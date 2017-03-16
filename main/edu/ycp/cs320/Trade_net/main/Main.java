@@ -1,4 +1,4 @@
-package edu.ycp.cs320.rstevenson.main;
+package edu.ycp.cs320.Trade_net.main;
 
 import java.util.Scanner;
 
