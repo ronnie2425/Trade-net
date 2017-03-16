@@ -23,6 +23,12 @@
     <servlet-class>edu.ycp.cs320.rstevenson.servlet.MultiplyNumbersServlet</servlet-class>
   </servlet>
   
+  <!-- Trade Net Servlets -->
+  <servlet>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<servlet-class>edu.ycp.cs320.Trade_net.servlet.LoginServlet</servlet-class>
+  </servlet>
+  
   <!-- AJAX servlets. -->
   <servlet>
     <servlet-name>AddNumbersAjaxServlet</servlet-name>
@@ -55,6 +61,13 @@
     <url-pattern>/multiplyNumbers</url-pattern>
   </servlet-mapping>
   
+  
+  <!-- Trade Net Servlet Mappings -->
+  <servlet-mapping>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  
   <!--  AJAX servlet mappings. -->
   <servlet-mapping>
     <servlet-name>AddNumbersAjaxServlet</servlet-name>
@@ -72,4 +85,8 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
+  
+  
 </web-app>
+
+
