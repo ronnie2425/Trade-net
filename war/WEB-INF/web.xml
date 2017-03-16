@@ -28,6 +28,10 @@
   	<servlet-name>LoginServlet</servlet-name>
   	<servlet-class>edu.ycp.cs320.Trade_net.servlet.LoginServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ChatServlet</servlet-name>
+  	<servlet-class>edu.ycp.cs320.Trade_net.servlet.ChatServlet</servlet-class>
+  </servlet>
   
   <!-- AJAX servlets. -->
   <servlet>
@@ -67,6 +71,11 @@
   	<servlet-name>LoginServlet</servlet-name>
   	<url-pattern>/login</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ChatServlet</servlet-name>
+  	<url-pattern>/chat</url-pattern>
+  </servlet-mapping>
+  
   
   <!--  AJAX servlet mappings. -->
   <servlet-mapping>
