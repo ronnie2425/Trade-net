@@ -6,14 +6,34 @@
 	</head>
 
 	<body>
-		<form action="${pageContext.servletContext.contextPath}/addNumbers" method="get">
-			<input type="submit" name="submit" value="Add Numbers">
+		<form action="${pageContext.servletContext.contextPath}/login" method="get">
+			<input type="submit" name="submit" value="Login">
 		</form>
-		<form action="${pageContext.servletContext.contextPath}/multiplyNumbers" method="get">
-			<input type="submit" name="submit" value="Multiply Numbers">
-		</form>
-		<form action="${pageContext.servletContext.contextPath}/guessingGame" method="get">
-			<input type="submit" name="startGame" value="Guessing Game">
-		</form>
+		<form action="${pageContext.servletContext.contextPath}/register" method="get">
+			<input type="submit" name="submit" value="Register">
+		</form>	
+		
+		
+<select>
+  <option value="1">platform</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>
+
+<select>
+  <option value="1">game</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>
+<select>
+  <option value="1">trade/buy</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>
+		
+			
 	</body>
 </html>

@@ -4,7 +4,7 @@
 	<classpathentry kind="src" path="war"/>
 	<classpathentry kind="src" path="lib"/>
 	<classpathentry kind="src" path="main"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_51"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/CDC-1.0%Foundation-1.0"/>
 	<classpathentry kind="lib" path="lib/jetty/jetty-ajp-7.4.4.v20110707.jar"/>
 	<classpathentry kind="lib" path="lib/jetty/jetty-annotations-7.4.4.v20110707.jar"/>
 	<classpathentry kind="lib" path="lib/jetty/jetty-client-7.4.4.v20110707.jar"/>
