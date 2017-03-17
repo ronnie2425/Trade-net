@@ -32,7 +32,6 @@
   	<servlet-name>ChatServlet</servlet-name>
   	<servlet-class>edu.ycp.cs320.Trade_net.servlet.ChatServlet</servlet-class>
   </servlet>
-  
   <servlet>
   	<servlet-name>RegisterServlet</servlet-name>
   	<servlet-class>edu.ycp.cs320.Trade_net.servlet.RegisterServlet</servlet-class>

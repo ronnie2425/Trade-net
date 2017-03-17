@@ -16,6 +16,4 @@ public class ChatServlet extends HttpServlet{
 		req.getRequestDispatcher("/chat.jsp").forward(req, resp);
 	}
 	
-	
-	
 }

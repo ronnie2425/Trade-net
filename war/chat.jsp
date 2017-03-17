@@ -8,13 +8,13 @@
 	</head>
 	
 	<body>
-		<form action="${pageContext.servletContext.contextPath}/chat" method="post">
+		<form action="${pageContext.servletContext.contextPath}/chat" method="post" >
 		
 		<p>
 			<label> Chat box </label>
-			<textarea> id = "message"
-				rows = "5"
-				cols = "50">please type your words here, thanks</textarea>
+			<textarea>please type your words here, thanks</textarea>
 		</p>
+		<input type = "submit" value = "Send Message">
+		</form>
 	</body>
 </html>
