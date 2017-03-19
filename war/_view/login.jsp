@@ -16,7 +16,7 @@
 			
 			<tr>
 				<td class="password">Password:</td>
-				<td><input type="text" name="Password" value="" /></td>
+				<td><input type="password" name="Password" value="" /></td>
 			</tr>
 		</table>
 		

@@ -16,12 +16,12 @@
 			
 			<tr>
 				<td class="password">Password:</td>
-				<td><input type="text" name="Password" value="" /></td>
+				<td><input type="password" name="Password" value="" /></td>
 			</tr>
 
 			<tr>
 				<td class="password">Re enter Password:</td>
-				<td><input type="text" name="Password2" value="" /></td>
+				<td><input type="password" name="Password2" value="" /></td>
 			</tr>
 			
 		</table>

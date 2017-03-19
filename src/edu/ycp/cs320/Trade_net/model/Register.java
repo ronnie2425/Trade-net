@@ -9,6 +9,9 @@ public class Register {
 		password2=p2;
 		email=e;
 	}
+	public Register(){
+		
+	}
 	public void verify(){
 		
 	}
