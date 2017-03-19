@@ -36,7 +36,6 @@
   	<servlet-name>RegisterServlet</servlet-name>
   	<servlet-class>edu.ycp.cs320.Trade_net.servlet.RegisterServlet</servlet-class>
   </servlet>
-  
   <!-- AJAX servlets. -->
   <servlet>
     <servlet-name>AddNumbersAjaxServlet</servlet-name>
@@ -79,13 +78,10 @@
   	<servlet-name>ChatServlet</servlet-name>
   	<url-pattern>/chat</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet-mapping>
   	<servlet-name>RegisterServlet</servlet-name>
   	<url-pattern>/register</url-pattern>
   </servlet-mapping>
-  
   <!--  AJAX servlet mappings. -->
   <servlet-mapping>
     <servlet-name>AddNumbersAjaxServlet</servlet-name>
