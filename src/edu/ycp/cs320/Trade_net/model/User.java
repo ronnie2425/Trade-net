@@ -8,6 +8,9 @@ public class User {
 		password=p;
 		email=e;
 	}
+	public User(){
+		
+	}
 	public void login(){
 		
 	}
