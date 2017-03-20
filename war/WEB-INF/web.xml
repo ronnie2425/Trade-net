@@ -26,6 +26,11 @@
   	<servlet-name>ListingsServlet</servlet-name>
   	<servlet-class>edu.ycp.cs320.Trade_net.servlet.ListingsServlet</servlet-class>
   </servlet>
+  
+  <servlet>
+  	<servlet-name>LogoutServlet</servlet-name>
+  	<servlet-class>edu.ycp.cs320.Trade_net.servlet.LogoutServlet</servlet-class>
+  </servlet>
  
 
   <!-- Servlet mappings -->
@@ -48,6 +53,11 @@
   <servlet-mapping>
   	<servlet-name>ListingsServlet</servlet-name>
   	<url-pattern>/listings</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>LogoutServlet</servlet-name>
+  	<url-pattern>/logout</url-pattern>
   </servlet-mapping>
  
 
