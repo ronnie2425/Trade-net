@@ -8,9 +8,6 @@ public class Notification {
 		notification=n;
 		user=u;
 	}
-	public void notify1(){
-		
-	}
 	public void setNotification(String n){
 		notification=n;
 	}

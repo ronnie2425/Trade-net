@@ -12,12 +12,6 @@ public class Register {
 	public Register(){
 		//add user to the database
 	}
-	public void verify(){
-		
-	}
-	public void create(){
-		
-	}
 	public void setUsername(String u){
 		username=u;
 	}
