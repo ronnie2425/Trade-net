@@ -1,12 +1,12 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>
-		Chat
+		MSM Chat Room
 		</title>
-	<link type="text/css" rel="stylesheet" href="ChatStyle.css" />
+	<link href="chatstyle.css" rel="stylesheet" type="text/css" ></link>
 	</head>
-	
+<body>	
 	<div id="background">
 		
 		<div id="chatwindow"></div>
@@ -16,4 +16,5 @@
 			<input name = "sendmsg" type = "submit" id = "sendmsg" value = "Send Message">
 		</form>
 	</div>
+</body>
 </html>
