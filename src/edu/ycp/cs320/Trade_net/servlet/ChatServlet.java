@@ -16,4 +16,11 @@ public class ChatServlet extends HttpServlet{
 		req.getRequestDispatcher("/_view/chat.jsp").forward(req, resp);
 	}
 	
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println(req.getParameter("text"));
+		
+		
+		req.getRequestDispatcher("/_view/chat.jsp").forward(req, resp);
+		
+	}
 }
