@@ -1,0 +1,26 @@
+
+#background{
+	margin: 0 auto;
+	padding-bottom: 30px;
+	background: powderblue;
+	border: 2px solid black;
+}
+#chatwindow{
+	text-align: left;
+	margin: 0 auto;
+	margin-bottom: 30px;
+	padding: 20px;
+	background: white;
+	height:350px;
+	width:575px;
+	border:2px solid black;
+}
+#userinput{
+	width:475px;
+	border:2px solid black;
+	margin: 0 auto;
+	text-align:left;
+}
+#sendmsg{
+	width:100px;
+}
