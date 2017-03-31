@@ -13,8 +13,7 @@ public class LogoutServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//remove the user
-		User user = new User();
-		req.setAttribute("user", user);
+		req.getSession().removeAttribute("user");
 		
 		//return to index
 		req.getRequestDispatcher("_view/index.jsp").forward(req, resp);

@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet{
 				System.out.println("username and password match");
 				
 				//set the user data into the page
-				req.setAttribute("user", user);	
+				req.getSession().setAttribute("user", user);	
 				req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
 
 			}
