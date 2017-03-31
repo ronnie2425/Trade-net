@@ -24,3 +24,30 @@
 #sendmsg{
 	width:100px;
 }
+#wrapper{
+	width:100%;
+	height:100%;
+	position:absolute;
+	vertical-align:middle;
+	text-align:center;
+}
+.navbar{
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+	background-color:black;
+}
+li{
+	float:left;
+}
+li i{
+	display:block;
+	color:orange;
+	text-align:center;
+	padding:15px 15px;
+	text-decoration: none;
+}
+li i:hover{
+	background-color:grey;
+}
