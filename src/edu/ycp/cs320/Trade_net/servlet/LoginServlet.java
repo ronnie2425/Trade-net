@@ -1,12 +1,16 @@
 package edu.ycp.cs320.Trade_net.servlet;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ycp.cs320.Trade_net.database.DerbyDatabase;
+import edu.ycp.cs320.Trade_net.database.IDatabase;
 import edu.ycp.cs320.Trade_net.model.User;
 
 public class LoginServlet extends HttpServlet{
@@ -26,13 +30,26 @@ public class LoginServlet extends HttpServlet{
 		
 		//check if input username and password exist
 		if (req.getParameter("Username") != null && req.getParameter("Password") != null){
-			
-			
-			//check username and password with current user
 			/*
 			 * TODO
 			 * Check username and password with database
 			 */
+			
+			//Initial structure for database
+			/*String username = req.getParameter("Username");
+			String password = req.getParameter("Password");
+			
+			IDatabase db = new DerbyDatabase();
+			List<String> result = db.verifyUserCredentials(username, password);
+			
+			Iterator itr = result.iterator();
+			
+			while (itr.hasNext())
+				System.out.println(itr.next());
+			*/
+			
+			
+			
 			if (user.getUsername().equals(req.getParameter("Username"))  && user.getPassword().equals(req.getParameter("Password"))){
 				System.out.println("username and password match");
 				
@@ -44,6 +61,7 @@ public class LoginServlet extends HttpServlet{
 			else{
 				System.out.println("username and password do not match");
 				//return to login if login fails
+				req.setAttribute("error", "Invalid username/password");
 				req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
 			}
 		}
@@ -51,8 +69,8 @@ public class LoginServlet extends HttpServlet{
 		else{
 			System.out.println("Invalid username and/or password");
 			//return to login if login fails
+			req.setAttribute("error", "Invalid username/password");
 			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
-		}
-
+		}		
 	}
 }

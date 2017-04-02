@@ -15,16 +15,17 @@ public class ChatServlet extends HttpServlet{
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		//send to login if user is not logged in
 		User user = (User) req.getSession().getAttribute("user");
-		
 		if (user == null){
 			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
 		}
+		//send to chat if user is logged in
 		req.getRequestDispatcher("/_view/chat.jsp").forward(req, resp);
 	}
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println(req.getParameter("text"));
+		String input = (req.getParameter("userinput"));
 		
 		
 		req.getRequestDispatcher("/_view/chat.jsp").forward(req, resp);

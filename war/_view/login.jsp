@@ -20,14 +20,10 @@
 			</tr>
 		</table>
 		
-		<input name ="submit" type ="submit" name ="submit" />
-		</form>
+		<input name ="submit" type ="submit" />
+		</form>		
 		
-		Temporarily show the username and password
-		<br />
-		Username is ${user.username}
-		<br />
-		Password is ${user.password}
+		${error}
 		
 	</body>
 </html> 

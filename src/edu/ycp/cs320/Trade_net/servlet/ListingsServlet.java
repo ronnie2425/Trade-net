@@ -26,5 +26,18 @@ private static final long serialVersionUID = 1L;
 
 		}
 	}
+	
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		String platform = req.getParameter("platform");
+		String game = req.getParameter("game");
+		String type = req.getParameter("type");
+		/*
+		 * Send a query recieving posts that satisfy the above conditions
+		 * Create 10 posts with the queried information
+		 * Send these posts to the jsp
+		 * Store position in the list of queries so that a next button can be implemented that prints the next 10 posts
+		 */
+		
+	}
 
 }

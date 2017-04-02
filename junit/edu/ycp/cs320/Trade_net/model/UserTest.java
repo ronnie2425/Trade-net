@@ -12,7 +12,7 @@ public class UserTest {
 	
 	@Before
 	public void setUp() {
-		user = new User("rick", "word", "memes@4chan.reddit");
+		user = new User("rick", "word", "memes@4chan.reddit", 1);
 	}
 	
 	@Test

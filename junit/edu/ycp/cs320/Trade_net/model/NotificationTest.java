@@ -14,7 +14,7 @@ public class NotificationTest {
 	
 	@Before
 	public void setUp() {
-		user = new User("Rick", "pass", "theboy@email.com");
+		user = new User("Rick", "pass", "theboy@email.com", 1);
 		model = new Notification("hey", user);
 	}
 	

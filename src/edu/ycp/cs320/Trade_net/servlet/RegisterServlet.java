@@ -42,12 +42,13 @@ private static final long serialVersionUID = 1L;
 			user.setPassword(password);
 			user.setUsername(username);
 			
-			req.setAttribute("user", user);
+			req.getSession().setAttribute("user", user);
 			req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
 
 			
 		}
 		else{
+			req.setAttribute("error", "invalid registration information");
 			req.getRequestDispatcher("/_view/register.jsp").forward(req, resp);
 
 		}

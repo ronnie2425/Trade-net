@@ -29,6 +29,8 @@
 		<input name ="submit" type ="submit" name ="submit" />
 		</form>
 		
+		${error}
+		
 	</body>
 		
 	
