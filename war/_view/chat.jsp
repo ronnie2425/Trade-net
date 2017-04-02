@@ -10,10 +10,12 @@
 	<div id="background">
 	<div class="navbar">
 		<ul>
-			<li><i href="${pageContext.servletContext.contextPath}/index"></i></li>
-			<li><i href="${pageContext.servletContext.contextPath}/index"></i></li>
-			<li><i href="${pageContext.servletContext.contextPath}/index"></i></li>
-			<li><i href="${pageContext.servletContext.contextPath}/index"></i></li>
+			<li><img src = "MSM Trading Network Logo.png" alt= "MSM logo" style="width:75px;height:75px;">
+			<li><a href="${pageContext.servletContext.contextPath}/index">Home</a></li>
+			<li><a href="${pageContext.servletContext.contextPath}/login">Log in</a></li>
+			<li><a href="${pageContext.servletContext.contextPath}/register">Register</a></li>
+			<li><a href="${pageContext.servletContext.contextPath}/listings">Trade</a></li>
+			<li><a href="${pageContext.servletContext.contextPath}/chat">Chat</a></li>
 		</ul>
 	</div>	
 		<div id="chatwindow"></div>
