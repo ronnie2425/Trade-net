@@ -23,5 +23,11 @@
 		<input name ="submit" type ="submit" name ="submit" />
 		</form>
 		
+		Temporarily show the username and password
+		<br />
+		Username is ${user.username}
+		<br />
+		Password is ${user.password}
+		
 	</body>
 </html> 

@@ -8,12 +8,24 @@
 	</head>
 <body>	
 	<div id="background">
-		
+
+	
+	<body>
+		Last message: ${text}
+	
+		<form action="${pageContext.servletContext.contextPath}/chat" method="post" >
+
 		<div id="chatwindow"></div>
 		
 		<form action="${pageContext.servletContext.contextPath}/chat" method="post" >
 			<input name = "userinput" type = "text" id = "userinput" size = "64">
 			<input name = "sendmsg" type = "submit" id = "sendmsg" value = "Send Message">
+
+		<p>
+			<label> Chat box </label>
+			<textarea name="text">please type your words here, thanks</textarea>
+		</p>
+		<input type = "submit" name = "submit" value = "Send Message">
 		</form>
 	</div>
 </body>

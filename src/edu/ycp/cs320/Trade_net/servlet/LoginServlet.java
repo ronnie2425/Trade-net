@@ -43,15 +43,16 @@ public class LoginServlet extends HttpServlet{
 			}
 			else{
 				System.out.println("username and password do not match");
+				//return to login if login fails
+				req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
 			}
 		}
 		
 		else{
 			System.out.println("Invalid username and/or password");
+			//return to login if login fails
+			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
 		}
-		
-		//return to login if login fails
-		req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
 
 	}
 }
