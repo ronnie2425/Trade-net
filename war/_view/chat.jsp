@@ -8,13 +8,14 @@
 	</head>
 <body>	
 	<div id="background">
-
-	
-	<body>
-		Last message: ${text}
-	
-		<form action="${pageContext.servletContext.contextPath}/chat" method="post" >
-
+	<div class="navbar">
+		<ul>
+			<li><i href="${pageContext.servletContext.contextPath}/index"></i></li>
+			<li><i href="${pageContext.servletContext.contextPath}/index"></i></li>
+			<li><i href="${pageContext.servletContext.contextPath}/index"></i></li>
+			<li><i href="${pageContext.servletContext.contextPath}/index"></i></li>
+		</ul>
+	</div>	
 		<div id="chatwindow"></div>
 		
 		<form action="${pageContext.servletContext.contextPath}/chat" method="post" >

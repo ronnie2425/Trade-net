@@ -1,8 +1,18 @@
+#pagetitle {
+	border-top: 5px solid darkblue;
+	border-bottom: 5px solid darkblue;
+	text-align: center;
+	font-size: 250%;
+	color: blue;
+	font-variant: small-caps;
+}
 #background{
 	margin: 0 auto;
 	padding-bottom: 30px;
-	background: blue;
+	background-color: orange;
 	border: 2px solid black;
+	width:1920px;
+	height:1080px;
 }
 #chatwindow{
 	text-align: left;
@@ -13,6 +23,7 @@
 	height:300px;
 	width:550px;
 	border:2px solid black;
+	overflow: auto;
 }
 #userinput{
 	width:475px;
