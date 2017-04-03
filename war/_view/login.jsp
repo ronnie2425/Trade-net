@@ -20,7 +20,7 @@
 			</tr>
 		</table>
 		
-		<input name ="submit" type ="submit" />
+		<input name ="submit" type ="submit" value="Log in"/>
 		</form>		
 		
 		${error}

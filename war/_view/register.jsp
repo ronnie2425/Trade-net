@@ -3,11 +3,24 @@
 <html>
 	<head>
 		<title>Register</title>
+		<link href="registerstyle.css" rel="stylesheet" type="text/css" ></link>
 	</head>
 	
-	<body>
+<body>
+	<div id="background">
+	<div class="navbar">
+		<ul>
+			<li><img src = "MSM Trading Network Logo.png" alt= "MSM logo" style="width:75px;height:75px;">
+			<li><a href="${pageContext.servletContext.contextPath}/index">Home</a></li>
+			<li><a href="${pageContext.servletContext.contextPath}/login">Log in</a></li>
+			<li><a href="${pageContext.servletContext.contextPath}/register">Register</a></li>
+			<li><a href="${pageContext.servletContext.contextPath}/listings">Trade</a></li>
+			<li><a href="${pageContext.servletContext.contextPath}/chat">Chat</a></li>
+		</ul>
+	</div>	
 		<form action="${pageContext.servletContext.contextPath}/register" method="post">
 		
+		Create a new MSM account:
 		<table>
 			<tr>
 				<td class="username">Username:</td>
@@ -28,10 +41,10 @@
 		
 		<input name ="submit" type ="submit" name ="submit" />
 		</form>
+	</div>
+</body>
 		
 		${error}
-		
-	</body>
 		
 	
 

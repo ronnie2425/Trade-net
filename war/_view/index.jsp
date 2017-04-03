@@ -3,6 +3,7 @@
 <html>
 	<head>
 		<title>Index view</title>
+		<link href="indexstyle.css" rel="stylesheet" type="text/css" ></link>
 	</head>
 
 	<body>
