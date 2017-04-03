@@ -20,10 +20,12 @@ public class UserTest {
 		user.setUsername("Richard Kellington");
 		assertEquals("Richard Kellington",user.getUsername());
 	}
+	@Test
 	public void testSetandGetPassword() {
 		user.setPassword("secret");
 		assertEquals("secret",user.getPassword());
 	}
+	@Test
 	public void testSetandGetEmail() {
 		user.setEmail("Outofjokes@tired.late");
 		assertEquals("Outofjokes@tired.late",user.getEmail());
