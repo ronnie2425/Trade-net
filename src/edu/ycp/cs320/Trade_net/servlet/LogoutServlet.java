@@ -11,6 +11,11 @@ import edu.ycp.cs320.Trade_net.model.User;
 
 public class LogoutServlet extends HttpServlet {
 	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getSession().removeAttribute("user");
+		req.getRequestDispatcher("_view/index.jsp").forward(req,resp);
+	}
+	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//remove the user
 		req.getSession().removeAttribute("user");
