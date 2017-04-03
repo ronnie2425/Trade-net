@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.AnnotationIntrospector.Pair;
+
 import edu.ycp.cs320.Trade_net.model.User;
 import edu.ycp.cs320.Trade_net.model.Posts;
 import edu.ycp.cs320.Trade_net.model.Notification;
@@ -243,6 +245,41 @@ public class DerbyDatabase implements IDatabase {
 		
 		System.out.println("Success!");
 	}
-	
+
+	/*public List<String> verifyUserCredentials(final String username, final String password) {
+		return executeTransaction(new Transaction<List<String>>(){
+
+			public List<String> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet set1 = null;
+				List<String> result;
+				
+				try{
+					stmt = conn.prepareStatement("select * from users where users.username "
+							+ "= ? and user.password = ?");
+					stmt.setString(1, username);
+					stmt.setString(2, password);
+					
+					result = new ArrayList<String>();
+					set1 = stmt.executeQuery();
+					
+					while(set1.next()){
+						String user = set1.getString(1);
+						String pass = set1.getString(2);
+						
+						result.add(user);
+						result.add(pass);
+						
+					}
+				}
+				finally{
+					DBUtil.closeQuietly(set1);
+					DBUtil.closeQuietly(stmt);
+				}
+				return result;
+			}
+		});
+	}
+	*/
 
 }

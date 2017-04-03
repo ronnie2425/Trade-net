@@ -16,6 +16,8 @@
 			<li><a href="${pageContext.servletContext.contextPath}/register">Register</a></li>
 			<li><a href="${pageContext.servletContext.contextPath}/listings">Trade</a></li>
 			<li><a href="${pageContext.servletContext.contextPath}/chat">Chat</a></li>
+			<li><a href="${pageContext.servletContext.contextPath}/logout">Logout</a></li>
+
 		</ul>
 	</div>	
 		<form action="${pageContext.servletContext.contextPath}/register" method="post">
@@ -43,6 +45,8 @@
 		</form>
 	</div>
 </body>
+		
+		${error}
 		
 	
 

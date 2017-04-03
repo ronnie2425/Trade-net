@@ -1,6 +1,8 @@
 package edu.ycp.cs320.Trade_net.servlet;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,32 +28,47 @@ public class LoginServlet extends HttpServlet{
 		
 		//check if input username and password exist
 		if (req.getParameter("Username") != null && req.getParameter("Password") != null){
-			
-			
-			//check username and password with current user
 			/*
 			 * TODO
 			 * Check username and password with database
 			 */
+			
+			//Initial structure for database
+			/*String username = req.getParameter("Username");
+			String password = req.getParameter("Password");
+			
+			IDatabase db = new DerbyDatabase();
+			List<String> result = db.verifyUserCredentials(username, password);
+			
+			Iterator itr = result.iterator();
+			
+			while (itr.hasNext())
+				System.out.println(itr.next());
+			*/
+			
+			
+			
 			if (user.getUsername().equals(req.getParameter("Username"))  && user.getPassword().equals(req.getParameter("Password"))){
 				System.out.println("username and password match");
 				
 				//set the user data into the page
-				req.setAttribute("user", user);	
+				req.getSession().setAttribute("user", user);	
 				req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
 
 			}
 			else{
 				System.out.println("username and password do not match");
+				//return to login if login fails
+				req.setAttribute("error", "Invalid username/password");
+				req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
 			}
 		}
 		
 		else{
 			System.out.println("Invalid username and/or password");
-		}
-		
-		//return to login if login fails
-		req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
-
+			//return to login if login fails
+			req.setAttribute("error", "Invalid username/password");
+			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
+		}		
 	}
 }

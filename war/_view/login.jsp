@@ -16,6 +16,8 @@
 			<li><a href="${pageContext.servletContext.contextPath}/register">Register</a></li>
 			<li><a href="${pageContext.servletContext.contextPath}/listings">Trade</a></li>
 			<li><a href="${pageContext.servletContext.contextPath}/chat">Chat</a></li>
+			<li><a href="${pageContext.servletContext.contextPath}/logout">Logout</a></li>
+
 		</ul>
 	</div>	
 		<form action="${pageContext.servletContext.contextPath}/login" method="post">
@@ -33,8 +35,10 @@
 			</tr>
 		</table>
 		
-		<input name ="submit" type ="submit" value ="Log in" />
-		</form>
+		<input name ="submit" type ="submit" value="Log in"/>
+		</form>		
+		
+		${error}
 	</div>
 </body>
 </html> 

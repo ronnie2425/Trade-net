@@ -16,36 +16,41 @@
 				<li><a href="${pageContext.servletContext.contextPath}/register">Register</a></li>
 				<li><a href="${pageContext.servletContext.contextPath}/listings">Trade</a></li>
 				<li><a href="${pageContext.servletContext.contextPath}/chat">Chat</a></li>
+				<li><a href="${pageContext.servletContext.contextPath}/logout">Logout</a></li>
+
 			</ul>
 		</div>
 		<div id="wrapper">	
 			Please select a platform, game, and trade method:
-			<select>
-			  <option value="1">Platform</option>
-			  <option value="2">PC</option>
-			  <option value="3">PS3</option>
-			  <option value="4">PS4</option>
-			  <option value="5">Xbox 360</option>
-			  <option value="6">Xbox One</option>
-			  <option value="7">Half-Life 3</option>
-			</select>
-			
-			<select>
-			  <option value="1">Game</option>
-			  <option value="2">CS:GO</option>
-			  <option value="3">Counter Strike:GO</option>
-			  <option value="4">CS:Global Offensive</option>
-			  <option value="5">C Strike:Global O</option>
-			  <option value="6">DotA 2</option>
-			  <option value="7">is</option>
-			</select>
-			<select>
-			  <option value="1">Buy/Sell</option>
-			  <option value="2">Buy</option>
-			  <option value="3">Sell</option>
-			  <option value="4">Trade</option>
-			  <option value="5">Confirmed</option>
-			</select>
+			<form action="${pageContext.servletContext.contextPath}/listings" method="post">
+				<select>
+				  <option value="1">Platform</option>
+				  <option value="2">PC</option>
+				  <option value="3">PS3</option>
+				  <option value="4">PS4</option>
+				  <option value="5">Xbox 360</option>
+				  <option value="6">Xbox One</option>
+				  <option value="7">Half-Life 3</option>
+				</select>
+				
+				<select>
+				  <option value="1">Game</option>
+				  <option value="2">CS:GO</option>
+				  <option value="3">Counter Strike:GO</option>
+				  <option value="4">CS:Global Offensive</option>
+				  <option value="5">C Strike:Global O</option>
+				  <option value="6">DotA 2</option>
+				  <option value="7">is</option>
+				</select>
+				<select>
+				  <option value="1">Buy/Sell</option>
+				  <option value="2">Buy</option>
+				  <option value="3">Sell</option>
+				  <option value="4">Trade</option>
+				  <option value="5">Confirmed</option>
+				</select>
+				<input name ="submit" type ="submit" value="Search"/>
+			</form>
 		</div>
 		<div id="listings">
 			<span class="listingelem"><li> User Alpha:
