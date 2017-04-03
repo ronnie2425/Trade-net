@@ -38,6 +38,11 @@ private static final long serialVersionUID = 1L;
 		 * Store position in the list of queries so that a next button can be implemented that prints the next 10 posts
 		 */
 		
+		
+		req.getRequestDispatcher("/_view/listings.jsp").forward(req, resp);
+
+		
+		
 	}
 
 }
