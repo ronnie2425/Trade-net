@@ -23,7 +23,7 @@ public class NotificationTest {
 		model.setNotification("hey");
 		assertEquals("hey", model.getNotification());
 	}
-	
+	@Test
 	public void testSetandGetUser() {
 		model.setUser(user);
 		assertEquals(user, model.getUser());
