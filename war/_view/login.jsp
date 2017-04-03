@@ -3,11 +3,24 @@
 <html>
 	<head>
 		<title>Login</title>
+		<link href="loginstyle.css" rel="stylesheet" type="text/css" ></link>
 	</head>
 	
-	<body>
+<body>
+	<div id ="background">
+	<div class="navbar">
+		<ul>
+			<li><img src = "MSM Trading Network Logo.png" alt= "MSM logo" style="width:75px;height:75px;">
+			<li><a href="${pageContext.servletContext.contextPath}/index">Home</a></li>
+			<li><a href="${pageContext.servletContext.contextPath}/login">Log in</a></li>
+			<li><a href="${pageContext.servletContext.contextPath}/register">Register</a></li>
+			<li><a href="${pageContext.servletContext.contextPath}/listings">Trade</a></li>
+			<li><a href="${pageContext.servletContext.contextPath}/chat">Chat</a></li>
+		</ul>
+	</div>	
 		<form action="${pageContext.servletContext.contextPath}/login" method="post">
-	
+		
+		Please enter valid MSM credentials:
 		<table>
 			<tr>
 				<td class="username">Username:</td>
@@ -24,6 +37,6 @@
 		</form>		
 		
 		${error}
-		
-	</body>
+	</div>
+</body>
 </html> 
