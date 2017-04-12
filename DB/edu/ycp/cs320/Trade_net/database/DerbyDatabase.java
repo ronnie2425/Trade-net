@@ -9,8 +9,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.AnnotationIntrospector.Pair;
-
 import edu.ycp.cs320.Trade_net.model.User;
 import edu.ycp.cs320.Trade_net.model.Posts;
 import edu.ycp.cs320.Trade_net.model.Notification;
@@ -229,6 +227,99 @@ public class DerbyDatabase implements IDatabase {
 					DBUtil.closeQuietly(insertPost);
 					DBUtil.closeQuietly(insertUser);
 					DBUtil.closeQuietly(insertNotification);
+				}
+			}
+		});
+	}
+	
+	public List<Notification> insertNotification(final int userid,final String message)
+	{
+		return executeTransaction(new Transaction<List<Notification>>()
+		{
+			public List<Notification> execute(Connection conn) throws SQLException
+			{
+				PreparedStatement stmt = null;
+				ResultSet res = null;
+				
+				try
+				{
+					stmt = conn.prepareStatement(
+							"insert into Notification(userid,message)"
+							+ "values(?,?)");
+					stmt.setInt(1, userid);
+					stmt.setString(2, message);
+					
+					stmt.executeUpdate();
+					return null;
+				}
+				finally
+				{
+					DBUtil.closeQuietly(stmt);
+					DBUtil.closeQuietly(res);
+				}
+			}
+		});
+	}
+	
+	public List<User> insertUser(final String username,final String password,final String email)
+	{
+		return executeTransaction(new Transaction<List<User>>()
+		{
+			public List<User> execute(Connection conn) throws SQLException
+			{
+				PreparedStatement stmt = null;
+				ResultSet res = null;
+				
+				try
+				{
+					stmt = conn.prepareStatement(
+							"insert into Users(username,password,email)"
+							+ "values(?,?,?)");
+					stmt.setString(1, username);
+					stmt.setString(2, password);
+					stmt.setString(3, email);
+					
+					stmt.executeUpdate();
+					return null;
+				}
+				finally
+				{
+					DBUtil.closeQuietly(stmt);
+					DBUtil.closeQuietly(res);
+				}
+			}
+		});
+	}
+	
+	public List<Posts> insertPost(final int userid,final String platform,final String game,final String trade ,final int time, final String message)
+	{
+		return executeTransaction(new Transaction<List<Posts>>()
+		{
+			public List<Posts> execute(Connection conn) throws SQLException
+			{
+				PreparedStatement stmt = null;
+				ResultSet res = null;
+				
+				try
+				{
+					// Posts : post id | user id | platform | game | trade/buy | time | message
+					stmt = conn.prepareStatement(
+							"insert into Posts(userid,platform,game,trade/buy,time,message)"
+							+ "values(?,?,?,?,?,?)");
+					stmt.setInt(1, userid);
+					stmt.setString(2, platform);
+					stmt.setString(3, game);
+					stmt.setString(4, trade);
+					stmt.setInt(5, time);
+					stmt.setString(6, message);
+					
+					stmt.executeUpdate();
+					return null;
+				}
+				finally
+				{
+					DBUtil.closeQuietly(stmt);
+					DBUtil.closeQuietly(res);
 				}
 			}
 		});
