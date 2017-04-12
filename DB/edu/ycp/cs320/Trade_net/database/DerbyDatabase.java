@@ -12,6 +12,7 @@ import java.util.List;
 import com.fasterxml.jackson.databind.AnnotationIntrospector.Pair;
 
 import edu.ycp.cs320.Trade_net.model.User;
+
 import edu.ycp.cs320.Trade_net.model.Posts;
 import edu.ycp.cs320.Trade_net.model.Notification;
 
@@ -146,7 +147,7 @@ public class DerbyDatabase implements IDatabase {
 					);
 					//System.out.println("test");
 					stmt2.executeUpdate();
-					// Notification : notifiction id | user id | message
+					// Notification : notifiction id | post id | message
 					stmt3 = conn.prepareStatement(
 							"create table notification (" +
 							"	notification_id integer primary key " +
@@ -246,40 +247,151 @@ public class DerbyDatabase implements IDatabase {
 		System.out.println("Success!");
 	}
 
-	/*public List<String> verifyUserCredentials(final String username, final String password) {
-		return executeTransaction(new Transaction<List<String>>(){
-
-			public List<String> execute(Connection conn) throws SQLException {
+	public List<User> findUser(final String username){
+		return executeTransaction(new Transaction<List<User>>() {
+			//@Override
+			public List<User> execute(Connection conn) throws SQLException {
 				PreparedStatement stmt = null;
-				ResultSet set1 = null;
-				List<String> result;
+				ResultSet resultSet = null;
 				
-				try{
-					stmt = conn.prepareStatement("select * from users where users.username "
-							+ "= ? and user.password = ?");
+				try {
+					// retreive all attributes from both Books and Authors tables
+					stmt = conn.prepareStatement(
+							"select users.* " +
+							"  from users " +
+							" where users.username = ? " 
+					);
 					stmt.setString(1, username);
-					stmt.setString(2, password);
 					
-					result = new ArrayList<String>();
-					set1 = stmt.executeQuery();
+					List <User> result = new ArrayList<User>();
 					
-					while(set1.next()){
-						String user = set1.getString(1);
-						String pass = set1.getString(2);
+					resultSet = stmt.executeQuery();
+					
+					// for testing that a result was returned
+					Boolean found = false;
+					
+					while (resultSet.next()) {
+						found = true;
+						
+						// create new User object
+						// retrieve attributes from resultSet starting with index 1
+						User user = new User();
+						loadUser(user, resultSet, 1);
 						
 						result.add(user);
-						result.add(pass);
-						
 					}
-				}
-				finally{
-					DBUtil.closeQuietly(set1);
+					
+					// check if the title was found
+					if (!found) {
+						System.out.println("<" + username + "> was not found in the users table");
+					}
+					
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
 					DBUtil.closeQuietly(stmt);
 				}
-				return result;
 			}
 		});
 	}
-	*/
+	public List<Posts> findPosts(final String platform,final String game, final String buy){
+		return executeTransaction(new Transaction<List<Posts>>() {
+			//@Override
+			public List<Posts> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					// retreive all attributes from both Books and Authors tables
+					stmt = conn.prepareStatement(
+							"select posts.* " +
+							"  from posts " +
+							" where posts.platform = ? " +
+							"  posts.game = ? " +
+							"  posts.trade = ? " 
+					);
+					stmt.setString(1, platform);
+					stmt.setString(2, game);
+					stmt.setString(3, buy);
+					
+					List <Posts> result = new ArrayList<Posts>();
+					
+					resultSet = stmt.executeQuery();
+					
+					// for testing that a result was returned
+					Boolean found = false;
+					
+					while (resultSet.next()) {
+						found = true;
+						
+						// create new post object
+						// retrieve attributes from resultSet starting with index 1
+						Posts post = new Posts();
+						loadPost(post, resultSet, 1);
+						
+						result.add(post);
+					}
+					
+					// check if the title was found
+					if (!found) {
+						System.out.println("posts were not found");
+					}
+					
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	public List<Notification> findNot(final int post_id){
+		return executeTransaction(new Transaction<List<Notification>>() {
+			//@Override
+			public List<Notification> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					// retreive all attributes from both Books and Authors tables
+					stmt = conn.prepareStatement(
+							"select notification.* " +
+							"  from notification " +
+							" where notification.post_id = ? "  
+					);
+					stmt.setInt(1, post_id);
+
+					
+					List <Notification> result = new ArrayList<Notification>();
+					
+					resultSet = stmt.executeQuery();
+					
+					// for testing that a result was returned
+					Boolean found = false;
+					
+					while (resultSet.next()) {
+						found = true;
+						
+						// create new post object
+						// retrieve attributes from resultSet starting with index 1
+						Notification not = new Notification();
+						loadNotification(not, resultSet, 1);
+						
+						result.add(not);
+					}
+					
+					// check if the title was found
+					if (!found) {
+						System.out.println("notifications were not found");
+					}
+					
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
 
 }
