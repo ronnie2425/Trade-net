@@ -14,10 +14,19 @@ public class PostController {
 		this.post=post;
 	}
 	public void expire(){
-		
+		if (post.getTime()==0){
+			IDatabase db = DatabaseProvider.getInstance();
+			db.deletePost(post);
+		}
 	}
 	public void notify1(){
 		
+		IDatabase db = DatabaseProvider.getInstance();
+		List<User> userl=db.findUser(post.getUserId());
+		User user=userl.get(0);
+		String message= user.getUsername()+ " would like to chat.";
+		
+		db.insertNotification(post.getUserId(), message);
 	}
 	public List<Posts> getPosts(){
 		IDatabase db = DatabaseProvider.getInstance();

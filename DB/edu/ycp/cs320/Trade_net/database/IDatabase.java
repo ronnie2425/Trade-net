@@ -11,6 +11,11 @@ import edu.ycp.cs320.Trade_net.model.Notification;
 
 public interface IDatabase {
 	public List<User> findUser(String username);
+	public List<User> findUser(int user_id);
 	public List<Posts> findPosts(String platform,String game, String buy);
 	public List<Notification> findNot(int post_id);
+	public List<Notification> insertNotification(int user_id,String message);
+	public List<User> insertUser(String username,String password, String email);
+	public List<Posts> insertPost( int userid, String platform, String game, String trade , int time,  String message);
+	public List<Posts> deletePost(Posts post);
 }

@@ -484,5 +484,79 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
-
+	public List<Posts> deletePost(final Posts post){
+		return executeTransaction(new Transaction<List<Posts>>()
+		{
+			public List<Posts> execute(Connection conn) throws SQLException
+			{
+				PreparedStatement stmt = null;
+				ResultSet res = null;
+				
+				try
+				{
+					// Posts : post id | user id | platform | game | trade/buy | time | message
+					stmt = conn.prepareStatement(
+							"delete from Posts "
+							+ "where post_id = ?");
+					stmt.setInt(1, post.getPostId());
+					
+					
+					stmt.executeUpdate();
+					return null;
+				}
+				finally
+				{
+					DBUtil.closeQuietly(stmt);
+					DBUtil.closeQuietly(res);
+				}
+			}
+		});
+	}
+	public List<User> findUser(final int user_id){
+		return executeTransaction(new Transaction<List<User>>() {
+			//@Override
+			public List<User> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					// retreive all attributes from both Books and Authors tables
+					stmt = conn.prepareStatement(
+							"select users.* " +
+							"  from users " +
+							" where users.user_id = ? " 
+					);
+					stmt.setInt(1, user_id);
+					
+					List <User> result = new ArrayList<User>();
+					
+					resultSet = stmt.executeQuery();
+					
+					// for testing that a result was returned
+					Boolean found = false;
+					
+					while (resultSet.next()) {
+						found = true;
+						
+						// create new User object
+						// retrieve attributes from resultSet starting with index 1
+						User user = new User();
+						loadUser(user, resultSet, 1);
+						
+						result.add(user);
+					}
+					
+					// check if the title was found
+					if (!found) {
+						System.out.println("<" + user_id+ "> was not found in the users table");
+					}
+					
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
 }
