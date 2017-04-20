@@ -4,7 +4,9 @@ import java.util.List;
 
 import edu.ycp.cs320.Trade_net.model.Register;
 import edu.ycp.cs320.Trade_net.database.DatabaseProvider;
+
 import edu.ycp.cs320.Trade_net.database.DerbyDatabase;
+
 import edu.ycp.cs320.Trade_net.database.IDatabase;
 import edu.ycp.cs320.Trade_net.model.User;
 
@@ -22,10 +24,11 @@ public class RegisterController {
 		if (!register.getPassword().equals(register.getPassword2())){
 			return false;
 		}
-		
+
 		IDatabase db = DatabaseProvider.getInstance();
 		List<User> userList = db.findUser(register.getUsername());
 		if (!userList.isEmpty())
+
 			return false;
 		else
 			return true;

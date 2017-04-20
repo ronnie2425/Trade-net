@@ -8,6 +8,13 @@ import edu.ycp.cs320.Trade_net.database.DerbyDatabase;
 import edu.ycp.cs320.Trade_net.database.IDatabase;
 import edu.ycp.cs320.Trade_net.model.User;
 
+import java.util.List;
+
+import edu.ycp.cs320.Trade_net.model.Register;
+import edu.ycp.cs320.Trade_net.database.DatabaseProvider;
+import edu.ycp.cs320.Trade_net.database.IDatabase;
+import edu.ycp.cs320.Trade_net.model.User;
+
 public class UserController {
 	private User user;
 	private IDatabase db;
