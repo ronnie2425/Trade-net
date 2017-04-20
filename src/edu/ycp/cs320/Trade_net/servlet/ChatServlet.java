@@ -1,6 +1,7 @@
 package edu.ycp.cs320.Trade_net.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +26,24 @@ public class ChatServlet extends HttpServlet{
 	}
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//get the input
 		String input = (req.getParameter("userinput"));
+		//get the previous messages
+		ArrayList<String> messages = new ArrayList<String>();
+		if (req.getSession().getAttribute("messages") != null){
+			messages = (ArrayList<String>) req.getSession().getAttribute("messages");
+
+		}		
+		//add the input to the set of messages
+		messages.add(input);
+		req.getSession().setAttribute("messages", messages);
+		
+		/*
+		 * TODO
+		 * Pull the user's name and send it along with the message as a list
+		 * Some type of scrolling implementation to prevent going off the chat box
+		 * send the list of messages to the database
+		 */
 		
 		
 		req.getRequestDispatcher("/_view/chat.jsp").forward(req, resp);
