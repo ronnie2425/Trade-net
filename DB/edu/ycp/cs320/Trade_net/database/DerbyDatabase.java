@@ -245,7 +245,7 @@ public class DerbyDatabase implements IDatabase {
 				try
 				{
 					stmt = conn.prepareStatement(
-							"insert into Notification(userid,message)"
+							"insert into Notification(post_id,message)"
 							+ "values(?,?)");
 					stmt.setInt(1, userid);
 					stmt.setString(2, message);
@@ -305,7 +305,7 @@ public class DerbyDatabase implements IDatabase {
 				{
 					// Posts : post id | user id | platform | game | trade/buy | time | message
 					stmt = conn.prepareStatement(
-							"insert into Posts(userid,platform,game,trade/buy,time,message)"
+							"insert into Posts(user_id,platform,game,trade,time,message)"
 							+ "values(?,?,?,?,?,?)");
 					stmt.setInt(1, userid);
 					stmt.setString(2, platform);
@@ -397,8 +397,8 @@ public class DerbyDatabase implements IDatabase {
 					stmt = conn.prepareStatement(
 							"select posts.* " +
 							"  from posts " +
-							" where posts.platform = ? " +
-							"  posts.game = ? " +
+							" where posts.platform = ? and" +
+							"  posts.game = ? and " +
 							"  posts.trade = ? " 
 					);
 					stmt.setString(1, platform);
