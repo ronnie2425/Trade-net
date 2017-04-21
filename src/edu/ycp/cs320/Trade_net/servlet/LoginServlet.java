@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ycp.cs320.Trade_net.controller.UserController;
+import edu.ycp.cs320.Trade_net.database.DatabaseProvider;
+import edu.ycp.cs320.Trade_net.database.IDatabase;
 import edu.ycp.cs320.Trade_net.model.User;
 
 public class LoginServlet extends HttpServlet{
@@ -21,44 +24,32 @@ public class LoginServlet extends HttpServlet{
 	}
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		User user = new User();
+		String username = req.getParameter("Username");
+		String password = req.getParameter("Password");
 		
-		user.setPassword("password");	//temp until database
-		user.setUsername("username");	//remove
+		User user = new User();
+		UserController controller = new UserController();
+		controller.setModel(user);
+		
 		
 		//check if input username and password exist
 		if (req.getParameter("Username") != null && req.getParameter("Password") != null){
-			/*
-			 * TODO
-			 * Check username and password with database
-			 */
+			System.out.println("username and password fields found " + username +" " + password);
+			boolean login = controller.login(username, password);
 			
-			//Initial structure for database
-			/*String username = req.getParameter("Username");
-			String password = req.getParameter("Password");
-			
-			IDatabase db = new DerbyDatabase();
-			List<String> result = db.verifyUserCredentials(username, password);
-			
-			Iterator itr = result.iterator();
-			
-			while (itr.hasNext())
-				System.out.println(itr.next());
-			*/
-			
-			
-			
-			if (user.getUsername().equals(req.getParameter("Username"))  && user.getPassword().equals(req.getParameter("Password"))){
-				System.out.println("username and password match");
+			//if the username and password match credentials in the database then login
+			if (login){
+				System.out.println("the database returned the password:" + user.getPassword());
+				System.out.println("the database returned the username:" + user.getUsername());
 				
-				//set the user data into the page
+				//user.setUsername(username);
+				//user.setPassword(password);
+				
 				req.getSession().setAttribute("user", user);	
 				req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
-
 			}
-			else{
-				System.out.println("username and password do not match");
-				//return to login if login fails
+			else if (!login){
+				//login failed
 				req.setAttribute("error", "Invalid username/password");
 				req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
 			}

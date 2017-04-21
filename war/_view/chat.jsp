@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 	<head>
 		<title>
@@ -19,7 +21,12 @@
 			<li><a href="${pageContext.servletContext.contextPath}/logout">Logout</a></li>
 		</ul>
 	</div>	
-		<div id="chatwindow"></div>
+		<div id="chatwindow">
+			<c:forEach items="${messages}" var="message">
+			        	${message}
+			        	<br></br>		            
+			    </c:forEach>
+		</div>
 		
 		<form action="${pageContext.servletContext.contextPath}/chat" method="post" >
 			<div id="wrapper">
