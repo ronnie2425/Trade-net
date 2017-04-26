@@ -16,6 +16,15 @@ public class Posts {
 		user_id=uid;
 		message=m;
 	}
+	public Posts(String p,String g,String b,String m, User u){
+		platform=p;
+		game=g;
+		time=30;
+		buy=b;
+		user=u;
+		user_id=user.getUserId();
+		message=m;
+	}
 	public Posts(){
 		
 	}

@@ -27,7 +27,8 @@ public class RegisterController {
 
 		IDatabase db = DatabaseProvider.getInstance();
 		List<User> userList = db.findUser(register.getUsername());
-		if (!userList.isEmpty())
+		User user=new User(register.getUsername(),register.getPassword(),register.getEmail(),1);
+		if (userList.get(0).equals(user))
 
 			return false;
 		else

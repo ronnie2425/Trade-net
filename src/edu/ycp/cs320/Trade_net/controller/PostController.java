@@ -33,4 +33,9 @@ public class PostController {
 		List<Posts> postList = db.findPosts(post.getPlatform(),post.getGame(),post.getBuy());
 		return postList;
 	}
+	public void deletePost(){
+		IDatabase db = DatabaseProvider.getInstance();
+		db.deletePost(post);
+	}
+	
 }

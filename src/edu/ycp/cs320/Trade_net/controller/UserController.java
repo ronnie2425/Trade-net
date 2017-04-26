@@ -46,20 +46,11 @@ public class UserController {
 		
 		return false;
 	}
-	public void logout(){
-		
-	}
+
 	public void post(User user,String platform,String game, String buy,String message){
 		IDatabase db = DatabaseProvider.getInstance();
 		db.insertPost(user.getUserId(), platform, game, buy, 30, message);
 	}
-	public void chat(){
-		
-	}
-	public void trade(){
-		
-	}
-	
 	public void setModel(User model){
 		//set the model
 		user = model;
