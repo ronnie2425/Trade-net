@@ -132,7 +132,7 @@ public class DatabaseTest {
 	{
 		System.out.println("\n*** Testing InsertUser ***");
 		
-		String user = "ricardo";
+		String user = "ricardon";
 		String pass = "kelly";
 		String email = "iam@tired.rn";
 		

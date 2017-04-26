@@ -397,7 +397,7 @@ public class DerbyDatabase implements IDatabase {
 					stmt = conn.prepareStatement(
 							"select posts.* " +
 							"  from posts " +
-							" where posts.platform = ? and" +
+							" where posts.platform = ? and " +
 							"  posts.game = ? and " +
 							"  posts.trade = ? " 
 					);

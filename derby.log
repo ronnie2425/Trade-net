@@ -1,1 +1,13 @@
-
+----------------------------------------------------------------
+Fri Apr 21 09:26:43 EDT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-015b-90b1-7e7a-0000065ea9b8 
+on database directory C:\Users\admi\git\Trade-net\test.db with class loader sun.misc.Launcher$AppClassLoader@c387f44 
+Loaded from file:/C:/Users/admi/git/Trade-net/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_51-b16
+user.dir=C:\Users\admi\git\Trade-net
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
