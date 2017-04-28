@@ -28,8 +28,8 @@ public class LoginServlet extends HttpServlet{
 		String password = req.getParameter("Password");
 		
 		User user = new User();
-		UserController controller = new UserController();
-		controller.setModel(user);
+		UserController controller = new UserController(user);
+		
 		
 		
 		//check if input username and password exist

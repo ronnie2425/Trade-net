@@ -28,9 +28,9 @@ public class PostController {
 		
 		db.insertNotification(post.getUserId(), message);
 	}
-	public List<Posts> getPosts(){
+	public List<Posts> getPosts(String platform,String game,String buy){
 		IDatabase db = DatabaseProvider.getInstance();
-		List<Posts> postList = db.findPosts(post.getPlatform(),post.getGame(),post.getBuy());
+		List<Posts> postList = db.findPosts(platform,game,buy);
 		return postList;
 	}
 	public void deletePost(){
