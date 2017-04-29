@@ -48,7 +48,6 @@ public class PostControllerTest {
 		model.setPostId(id);
 		controller=new PostController(model);
 		controller.deletePost();
-		
 		posts2=controller.getPosts();
 		
 		assertEquals(true,posts2.isEmpty());
