@@ -37,7 +37,7 @@ public class PostControllerTest {
 		db= DatabaseProvider.getInstance();
 		db.insertPost(user.getUserId(), "platform6", "game6", "buy", 30, "message");
 		
-		posts=controller.getPosts("platform6", "game6", "buy");
+		posts=controller.getPosts();
 		
 		assertEquals(false,posts.isEmpty());
 		assertEquals(true ,model.getPlatform().equals((posts.get(0).getPlatform())));
@@ -49,7 +49,7 @@ public class PostControllerTest {
 		controller=new PostController(model);
 		controller.deletePost();
 		
-		posts2=controller.getPosts("platform6", "game6", "buy");
+		posts2=controller.getPosts();
 		
 		assertEquals(true,posts2.isEmpty());
 		

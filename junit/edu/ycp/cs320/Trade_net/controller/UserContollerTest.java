@@ -24,7 +24,7 @@ public class UserContollerTest {
 	public void setUp() {
 		user = new User("Rick", "pass", "theboy@email.com", 1);
 		model = new Notification("hey", user);
-		controller=new UserController(user);
+		controller=new UserController();
 	}
 	
 	@Test
