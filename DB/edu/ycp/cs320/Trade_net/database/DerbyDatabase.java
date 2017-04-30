@@ -109,13 +109,13 @@ public class DerbyDatabase implements IDatabase {
 		n.setUserId(resultSet.getInt(index++));
 		n.setNotification(resultSet.getString(index++));
 	}
-	private void loadChat(Chat c, ResultSet res, int index) throws SQLException
-	{
-		c.setMsgId(res.getInt(index++));
-		c.setPostId(res.getInt(index++));
-		c.setUserId(res.getInt(index++));
-		c.setMsg(res.getString(index++));
-	}
+	//private void loadChat(Chat c, ResultSet res, int index) throws SQLException
+	//{
+	//	c.setMsgId(res.getInt(index++));
+	//	c.setPostId(res.getInt(index++));
+	//	c.setUserId(res.getInt(index++));
+	//	c.setMsg(res.getString(index++));
+	//}
 	
 	public void createTables() {
 		executeTransaction(new Transaction<Boolean>() {
@@ -139,6 +139,8 @@ public class DerbyDatabase implements IDatabase {
 					);	
 					//System.out.println("test");
 					stmt1.executeUpdate();
+					
+					
 					// Posts : post id | user id | platform | game | trade/buy | time | message
 					stmt2 = conn.prepareStatement(
 							"create table posts (" +
@@ -166,15 +168,15 @@ public class DerbyDatabase implements IDatabase {
 					//System.out.println("test");
 					stmt3.executeUpdate();
 					//Chat : message id | post id | user id | message
-					stmt4 = conn.prepareStatement(
-							"create table chat (" +
-							"   message_id integer primary key " +
-							"       generated always as identity (start with 1, increment by 1), " +
-							"   post_id integer constraint post_id references users, " +
-							"   user_id integer constraint user_id references users" +
-							"   message varchar(500)" +
-							")");
-					stmt4.executeUpdate();
+				//	stmt4 = conn.prepareStatement(
+					///		"create table chat (" +
+				//			"   message_id integer primary key " +
+				//			"       generated always as identity (start with 1, increment by 1), " +
+				//			"   post_id integer constraint post_id references users, " +
+				//			"   user_id integer constraint user_id references users" +
+				//			"   message varchar(500)" +
+				//			")");
+				//	stmt4.executeUpdate();
 					return true;
 				} finally {
 					DBUtil.closeQuietly(stmt1);
@@ -191,13 +193,13 @@ public class DerbyDatabase implements IDatabase {
 				List<User> userList;
 				List<Posts> postList;
 				List<Notification> notList;
-				List<Chat> chatList;
+				//List<Chat> chatList;
 				
 				try {
 					userList = InitialData.getUsers();
 					postList = InitialData.getPosts();
 					notList = InitialData.getNotifications();
-					chatList = InitialData.getChat();
+					//chatList = InitialData.getChat();
 					
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
@@ -206,7 +208,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement insertUser = null;
 				PreparedStatement insertPost   = null;
 				PreparedStatement insertNotification   = null;
-				PreparedStatement insertChat = null;
+				//PreparedStatement insertChat = null;
 
 				try {
 					// populate authors table (do authors first, since author_id is foreign key in books table)
@@ -244,15 +246,15 @@ public class DerbyDatabase implements IDatabase {
 					}
 					insertPost.executeBatch();
 					
-					insertChat = conn.prepareStatement("insert into chat (message, post_id, user_id) values (?, ?, ?)");
-					for (Chat chat: chatList)
-					{
-						insertChat.setString(1, chat.getMsg());
-						insertChat.setInt(2, chat.getPostId());
-						insertChat.setInt(3, chat.getUserId());
-						insertChat.addBatch();
-					}
-					insertChat.executeBatch();
+					//insertChat = conn.prepareStatement("insert into chat (message, post_id, user_id) values (?, ?, ?)");
+					//for (Chat chat: chatList)
+					//{
+					//	insertChat.setString(1, chat.getMsg());
+					//	insertChat.setInt(2, chat.getPostId());
+					//	insertChat.setInt(3, chat.getUserId());
+					//	insertChat.addBatch();
+					//}
+					//insertChat.executeBatch();
 					return true;
 				} finally {
 					DBUtil.closeQuietly(insertPost);
@@ -358,6 +360,7 @@ public class DerbyDatabase implements IDatabase {
 	
 	public List<Chat> insertChat(final String message,final int postid,final int userid)
 	{
+	//	throw new UnsupportedOperation();
 		return executeTransaction(new Transaction<List<Chat>>()
 		{
 			public List<Chat> execute(Connection conn) throws SQLException
@@ -648,10 +651,10 @@ public class DerbyDatabase implements IDatabase {
 					{
 						found = true;
 						
-						Chat chat = new Chat();
-						loadChat(chat, res, 1);
+						//Chat chat = new Chat();
+						//loadChat(chat, res, 1);
 						
-						result.add(chat);
+						//result.add(chat);
 						
 					}
 					if(!found)

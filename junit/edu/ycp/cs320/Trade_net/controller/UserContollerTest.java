@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.ycp.cs320.Trade_net.database.DatabaseProvider;
+import edu.ycp.cs320.Trade_net.database.DerbyDatabase;
 import edu.ycp.cs320.Trade_net.database.IDatabase;
 import edu.ycp.cs320.Trade_net.model.Notification;
 import edu.ycp.cs320.Trade_net.model.Posts;
@@ -18,13 +19,16 @@ public class UserContollerTest {
 	private User user;
 	private UserController controller;
 	private IDatabase db;
+
 	private List<Posts> posts = null;
 	
 	@Before
 	public void setUp() {
 		user = new User("Rick", "pass", "theboy@email.com", 1);
 		model = new Notification("hey", user);
-		controller=new UserController();
+		controller=new UserController(user);
+		DatabaseProvider.setInstance(new DerbyDatabase());
+		db = DatabaseProvider.getInstance();
 	}
 	
 	@Test
@@ -36,5 +40,12 @@ public class UserContollerTest {
 		assertEquals(false, posts.isEmpty());
 		
 	}
+	@Test
+	public void testLogin() {
+		assertEquals(false, controller.login("Rick", "pdasda"));
+		assertEquals(true, controller.login("User1", "Password1"));
+		
+	}
+	
 	
 }

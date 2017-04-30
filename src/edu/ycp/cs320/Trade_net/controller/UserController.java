@@ -17,11 +17,13 @@ import edu.ycp.cs320.Trade_net.model.User;
 
 public class UserController {
 	private User user;
-	private IDatabase db;
+	//private IDatabase db;
 	
 	public UserController(){
-		DatabaseProvider.setInstance(new DerbyDatabase());
-		db = DatabaseProvider.getInstance();
+		
+	}
+	public UserController(User u){
+		user=u;
 	}
 	
 	public boolean login(String username, String password){

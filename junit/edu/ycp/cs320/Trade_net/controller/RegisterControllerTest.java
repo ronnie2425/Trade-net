@@ -41,7 +41,7 @@ public class RegisterControllerTest {
 	@Test
 	public void testCreate() {
 		controller.create();
-		users=db.findUser(user.getUsername());
+		users=db.findUser(model.getUsername());
 		assertEquals(false, users.isEmpty());
 		
 	}

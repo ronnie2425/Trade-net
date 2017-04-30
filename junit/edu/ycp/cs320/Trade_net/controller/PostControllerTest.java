@@ -10,6 +10,7 @@ import org.junit.Test;
 import edu.ycp.cs320.Trade_net.model.*;
 import edu.ycp.cs320.Trade_net.controller.*;
 import edu.ycp.cs320.Trade_net.database.DatabaseProvider;
+import edu.ycp.cs320.Trade_net.database.DerbyDatabase;
 import edu.ycp.cs320.Trade_net.database.IDatabase;
 
 public class PostControllerTest {
@@ -27,7 +28,8 @@ public class PostControllerTest {
 		user= new User("testp","pass","email",5);
 		 model=new Posts("platform6", "game6", "buy", "message",user);
 		controller= new PostController(model);
-		//db= DatabaseProvider.getInstance();
+		DatabaseProvider.setInstance(new DerbyDatabase());
+		db = DatabaseProvider.getInstance();
 		//db.insertUser("testp", "pass", "email");
 	}
 	
