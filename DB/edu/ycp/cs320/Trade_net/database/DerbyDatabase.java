@@ -12,6 +12,7 @@ import java.util.List;
 import edu.ycp.cs320.Trade_net.model.User;
 
 import edu.ycp.cs320.Trade_net.model.Posts;
+import edu.ycp.cs320.Trade_net.model.Chat;
 import edu.ycp.cs320.Trade_net.model.Notification;
 
 
@@ -108,6 +109,13 @@ public class DerbyDatabase implements IDatabase {
 		n.setUserId(resultSet.getInt(index++));
 		n.setNotification(resultSet.getString(index++));
 	}
+	private void loadChat(Chat c, ResultSet res, int index) throws SQLException
+	{
+		c.setMsgId(res.getInt(index++));
+		c.setPostId(res.getInt(index++));
+		c.setUserId(res.getInt(index++));
+		c.setMsg(res.getString(index++));
+	}
 	
 	public void createTables() {
 		executeTransaction(new Transaction<Boolean>() {
@@ -116,6 +124,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt1 = null;
 				PreparedStatement stmt2 = null;
 				PreparedStatement stmt3 = null;
+				PreparedStatement stmt4 = null;
 				
 				try {
 					// Users : User_id | Username | Password | Email
@@ -156,7 +165,16 @@ public class DerbyDatabase implements IDatabase {
 					);
 					//System.out.println("test");
 					stmt3.executeUpdate();
-					
+					//Chat : message id | post id | user id | message
+					stmt4 = conn.prepareStatement(
+							"create table chat (" +
+							"   message_id integer primary key " +
+							"       generated always as identity (start with 1, increment by 1), " +
+							"   post_id integer constraint post_id references users, " +
+							"   user_id integer constraint user_id references users" +
+							"   message varchar(500)" +
+							")");
+					stmt4.executeUpdate();
 					return true;
 				} finally {
 					DBUtil.closeQuietly(stmt1);
@@ -173,11 +191,13 @@ public class DerbyDatabase implements IDatabase {
 				List<User> userList;
 				List<Posts> postList;
 				List<Notification> notList;
+				List<Chat> chatList;
 				
 				try {
 					userList = InitialData.getUsers();
 					postList = InitialData.getPosts();
 					notList = InitialData.getNotifications();
+					chatList = InitialData.getChat();
 					
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
@@ -186,6 +206,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement insertUser = null;
 				PreparedStatement insertPost   = null;
 				PreparedStatement insertNotification   = null;
+				PreparedStatement insertChat = null;
 
 				try {
 					// populate authors table (do authors first, since author_id is foreign key in books table)
@@ -223,6 +244,15 @@ public class DerbyDatabase implements IDatabase {
 					}
 					insertPost.executeBatch();
 					
+					insertChat = conn.prepareStatement("insert into chat (message, post_id, user_id) values (?, ?, ?)");
+					for (Chat chat: chatList)
+					{
+						insertChat.setString(1, chat.getMsg());
+						insertChat.setInt(2, chat.getPostId());
+						insertChat.setInt(3, chat.getUserId());
+						insertChat.addBatch();
+					}
+					insertChat.executeBatch();
 					return true;
 				} finally {
 					DBUtil.closeQuietly(insertPost);
@@ -313,6 +343,37 @@ public class DerbyDatabase implements IDatabase {
 					stmt.setString(4, trade);
 					stmt.setInt(5, time);
 					stmt.setString(6, message);
+					
+					stmt.executeUpdate();
+					return null;
+				}
+				finally
+				{
+					DBUtil.closeQuietly(stmt);
+					DBUtil.closeQuietly(res);
+				}
+			}
+		});
+	}
+	
+	public List<Chat> insertChat(final String message,final int postid,final int userid)
+	{
+		return executeTransaction(new Transaction<List<Chat>>()
+		{
+			public List<Chat> execute(Connection conn) throws SQLException
+			{
+				PreparedStatement stmt = null;
+				ResultSet res = null;
+				
+				try
+				{
+					// Chat : message | message id | post id | user id
+					stmt = conn.prepareStatement(
+							"insert into Chat(message,post_id,user_id)"
+							+  "values(?,?,?)");
+					stmt.setString(1, message);
+					stmt.setInt(2, postid);
+					stmt.setInt(3, userid);
 					
 					stmt.executeUpdate();
 					return null;
@@ -555,6 +616,54 @@ public class DerbyDatabase implements IDatabase {
 				} finally {
 					DBUtil.closeQuietly(resultSet);
 					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	public List<Chat> findChat(final int chat_id)
+	{
+		return executeTransaction(new Transaction<List<Chat>>()
+		{
+			public List<Chat> execute(Connection conn) throws SQLException
+			{
+				PreparedStatement stmt = null;
+				ResultSet res = null;
+				
+				try
+				{
+					stmt = conn.prepareStatement(
+							"select chat.*" +
+							"   from chat " +
+							"   where chat.message_id = ? "
+							);
+					stmt.setInt(1, chat_id);
+					
+					List<Chat> result = new ArrayList<Chat>();
+					
+					res = stmt.executeQuery();
+					
+					boolean found = false;
+					
+					while(res.next())
+					{
+						found = true;
+						
+						Chat chat = new Chat();
+						loadChat(chat, res, 1);
+						
+						result.add(chat);
+						
+					}
+					if(!found)
+					{
+						System.out.println("Chat could not be found");
+					}
+					return result;
+				}
+				finally
+				{
+					DBUtil.closeQuietly(stmt);
+					DBUtil.closeQuietly(res);
 				}
 			}
 		});
