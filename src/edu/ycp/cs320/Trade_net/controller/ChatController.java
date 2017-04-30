@@ -14,5 +14,4 @@ public class ChatController {
 	{
 		chat = c;
 	}
-	
 }
