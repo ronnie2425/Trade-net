@@ -1,14 +1,13 @@
 <!DOCTYPE HTML>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-
 <html>
 	<head>
-		<title>Listings</title>
+		<title>Create Post</title>
 		<link href="listingstyle.css" rel="stylesheet" type="text/css" ></link>
 	</head>
 	
-<body>
+	<body>
 	<div id="background">
 		<div class="navbar">
 			<ul>
@@ -22,9 +21,10 @@
 
 			</ul>
 		</div>
-		<div id="wrapper">	
+			
+			<div id="wrapper">	
 			Please select a platform, game, and trade method:
-			<form action="${pageContext.servletContext.contextPath}/listings" method="post">
+			<form action="${pageContext.servletContext.contextPath}/post" method="post">
 				<select name="platform">
 				  <option value="null">Platform</option>
 				  <option value="PC">PC</option>
@@ -48,40 +48,11 @@
 				  <option value="sell">Sell</option>
 				  <option value="trade">Trade</option>
 				</select>
-				<input name ="submit" type ="submit" value="Search"/>
+				
+				<br>Put your message here</br>
+				<input name ="message" type="text"/>
+				
+				<input name ="submit" type ="submit" value="Create Post"/>
 			</form>
 		</div>
-		<div id="listings">
-			<span class="listingelem"><li> User Alpha:
-			<img src="http://i3.kym-cdn.com/photos/images/newsfeed/001/015/725/eca.png" alt="PEPE" style="width:250px;height:150px;">
-			This is where the listing description and things will go</span></li>
-			<span class="listingelem"><li> User Omichron:
-			<img src="http://s2.quickmeme.com/img/e2/e22f342d9628ce4bda4a7ca60a1ebda510e0c0608b173650ab254d6507d16326.jpg" alt="SMASHING" style="width:250px;height:150px;">
-			This is where the listing description and things will go</span></li>
-			<span class="listingelem"><li> User Omega:
-			<img src="http://www.troll.me/images/overdrive-plankton/maximum-overdrive-thumb.jpg" alt="SMASHING" style="width:250px;height:150px;">
-			This is where the listing description and things will go</span></li>
-		</div>
-	</div>
-	
-	<div>
-	<p>For loop</p>
-	<c:forEach items="${list}" var="post">
-			        	Game is: ${post.game}
-			        	Type is: ${post.buy}
-			        	Platform is: ${post.platform}
-			        	Message is: ${post.message}
-			        	<br></br>		            
-	</c:forEach>
-	</div>
-	
-	<div style="text-align:center;">
-			<form action="${pageContext.servletContext.contextPath}/post" method="get">
-			<br>Click here to create a new post</br>
-			<input type ="text" name ="text" />
-			<input name="post" type="submit" value="Create"/>
-			</form>
-		</div>
-</body>
-
-</html>
+		

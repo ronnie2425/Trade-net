@@ -40,6 +40,7 @@ public class UserController {
 			//set the model with the username and password
 			this.user.setUsername(user.getUsername());
 			this.user.setPassword(user.getPassword());
+			this.user.setUserId(user.getUserId());
 			//return true to allow the user to login
 			return true;
 		}
