@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Sun Apr 30 17:16:47 EDT 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-015b-c0b9-18b3-000006ebfa80 
-on database directory C:\Users\admi\git\Trade-net\test.db with class loader sun.misc.Launcher$AppClassLoader@c387f44 
-Loaded from file:/C:/Users/admi/git/Trade-net/lib/derby.jar
+Sun Apr 30 23:21:04 EDT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-015b-c206-9b54-00000d714ee8 
+on database directory C:\Users\Jacob\git\Trade-net\test.db with class loader sun.misc.Launcher$AppClassLoader@c387f44 
+Loaded from file:/C:/Users/Jacob/git/Trade-net/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_51-b16
-user.dir=C:\Users\admi\git\Trade-net
-os.name=Windows 7
+user.dir=C:\Users\Jacob\git\Trade-net
+os.name=Windows 8.1
 os.arch=amd64
-os.version=6.1
+os.version=6.3
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
