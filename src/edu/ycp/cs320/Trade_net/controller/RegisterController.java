@@ -13,15 +13,18 @@ import edu.ycp.cs320.Trade_net.model.User;
 
 public class RegisterController {
 	private Register register;
-	private IDatabase db;
+	;
 	
 	public RegisterController(Register r){
 		register=r;
 		DatabaseProvider.setInstance(new DerbyDatabase());
-		db = DatabaseProvider.getInstance();
+		//db = DatabaseProvider.getInstance();
 	}
 	public boolean verify(){
 		if (!register.getPassword().equals(register.getPassword2())){
+			return false;
+		}
+		if (register.getPassword().length() < 4 || register.getUsername().length() < 4){
 			return false;
 		}
 

@@ -21,26 +21,25 @@
 
 			</ul>
 		</div>
-			
-			<div id="wrapper">	
+		<div id="wrapper">	
 			Please select a platform, game, and trade method:
 			<form action="${pageContext.servletContext.contextPath}/post" method="post">
 				<select name="platform">
-				  <option value="null">Platform</option>
-				  <option value="PC">PC</option>
-				  <option value="PS3">PS3</option>
-				  <option value="PS4">PS4</option>
-				  <option value="Xbox 360">Xbox 360</option>
-				  <option value="Xbox one">Xbox One</option>
+					 <option value="null">Platform</option>
+					 <option value="PC">PC</option>
+					 <option value="PS3">PS3</option>
+					 <option value="PS4">PS4</option>
+					 <option value="Xbox 360">Xbox 360</option>
+					 <option value="Xbox one">Xbox One</option>
 				</select>
-				
+					
 				<select name="game">
 				  <option value="null">Game</option>
 				  <option value="CS:GO">CS:GO</option>
-				  <option value="3">Counter Strike:GO</option>
-				  <option value="4">CS:Global Offensive</option>
-				  <option value="5">C Strike:Global O</option>
-				  <option value="6">DotA 2</option>
+				  <option value="Counter Strike:GO">Counter Strike:GO</option>
+				  <option value="CS:Global Offensive">CS:Global Offensive</option>
+				  <option value="C Strike:Global O">C Strike:Global O</option>
+				  <option value="DotA 2">DotA 2</option>
 				</select>
 				<select name="type">
 				  <option value="null">Buy/Sell</option>
@@ -52,7 +51,8 @@
 				<br>Put your message here</br>
 				<input name ="message" type="text"/>
 				
-				<input name ="submit" type ="submit" value="Create Post"/>
-			</form>
-		</div>
-		
+				<input name ="submit" type ="submit" value="Create Post"/>				
+				
+		</form>
+	</div>
+	

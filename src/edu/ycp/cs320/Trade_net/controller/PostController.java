@@ -38,8 +38,12 @@ public class PostController {
 		List<Posts> postList = db.findPosts(post.getPlatform(),post.getGame(),post.getBuy());
 		return postList;
 	}
-	
 	public void insertPost(){
 		db.insertPost(post.getUserId(), post.getPlatform(), post.getGame(), post.getBuy(), (int)post.getTime(), post.getMessage());
+	}
+
+	public void deletePost(){
+		IDatabase db = DatabaseProvider.getInstance();
+		db.deletePost(post);
 	}
 }

@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-
 <html>
 	<head>
 		<title>Listings</title>
@@ -22,6 +21,14 @@
 
 			</ul>
 		</div>
+		<div style="text-align:center;">
+			<form action="${pageContext.servletContext.contextPath}/post" method="get">
+			<br>Click here to create a new post</br>
+			<input type ="text" name ="text" />
+			<input name="post" type="submit" value="Create"/>
+			</form>
+		</div>
+		
 		<div id="wrapper">	
 			Please select a platform, game, and trade method:
 			<form action="${pageContext.servletContext.contextPath}/listings" method="post">
@@ -51,37 +58,18 @@
 				<input name ="submit" type ="submit" value="Search"/>
 			</form>
 		</div>
+		<br />
 		<div id="listings">
-			<span class="listingelem"><li> User Alpha:
-			<img src="http://i3.kym-cdn.com/photos/images/newsfeed/001/015/725/eca.png" alt="PEPE" style="width:250px;height:150px;">
-			This is where the listing description and things will go</span></li>
-			<span class="listingelem"><li> User Omichron:
-			<img src="http://s2.quickmeme.com/img/e2/e22f342d9628ce4bda4a7ca60a1ebda510e0c0608b173650ab254d6507d16326.jpg" alt="SMASHING" style="width:250px;height:150px;">
-			This is where the listing description and things will go</span></li>
-			<span class="listingelem"><li> User Omega:
-			<img src="http://www.troll.me/images/overdrive-plankton/maximum-overdrive-thumb.jpg" alt="SMASHING" style="width:250px;height:150px;">
-			This is where the listing description and things will go</span></li>
-		</div>
-	</div>
-	
-	<div>
-	<p>For loop</p>
-	<c:forEach items="${list}" var="post">
+			<c:forEach items="${list}" var="post">
 			        	Game is: ${post.game}
 			        	Type is: ${post.buy}
 			        	Platform is: ${post.platform}
 			        	Message is: ${post.message}
+			        	userid is: ${post.userId}
+			        	postid is: ${post.postId}
 			        	<br></br>		            
-	</c:forEach>
-	</div>
-	
-	<div style="text-align:center;">
-			<form action="${pageContext.servletContext.contextPath}/post" method="get">
-			<br>Click here to create a new post</br>
-			<input type ="text" name ="text" />
-			<input name="post" type="submit" value="Create"/>
-			</form>
+			</c:forEach>
 		</div>
-</body>
-
+		
+	</body>
 </html>

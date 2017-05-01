@@ -17,12 +17,13 @@ import edu.ycp.cs320.Trade_net.model.User;
 
 public class UserController {
 	private User user;
-	private IDatabase db;
+	//private IDatabase db;
 	
 	public UserController(){
-		//set the database
-		DatabaseProvider.setInstance(new DerbyDatabase());
-		db = DatabaseProvider.getInstance();
+		
+	}
+	public UserController(User u){
+		user=u;
 	}
 	
 	public boolean login(String username, String password){
@@ -47,22 +48,13 @@ public class UserController {
 		
 		return false;
 	}
-	public void logout(){
-		
-	}
+
 	public void post(User user,String platform,String game, String buy,String message){
 		IDatabase db = DatabaseProvider.getInstance();
 		db.insertPost(user.getUserId(), platform, game, buy, 30, message);
 	}
-	public void chat(){
-		
-	}
-	public void trade(){
-		
-	}
-	
-	public void setModel(User model){
-		//set the model
+	public void setModel(User model)
+	{
 		user = model;
 	}
 }

@@ -32,6 +32,7 @@ public class LoginServlet extends HttpServlet{
 		controller.setModel(user);
 		
 		
+		
 		//check if input username and password exist
 		if (req.getParameter("Username") != null && req.getParameter("Password") != null){
 			System.out.println("username and password fields found " + username +" " + password);

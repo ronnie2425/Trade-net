@@ -7,6 +7,7 @@ import java.util.List;
 
 import edu.ycp.cs320.Trade_net.model.User;
 import edu.ycp.cs320.Trade_net.model.Posts;
+import edu.ycp.cs320.Trade_net.model.Chat;
 import edu.ycp.cs320.Trade_net.model.Notification;
 
 public class InitialData {
@@ -83,6 +84,28 @@ public class InitialData {
 			return postList;
 		} finally {
 			readPosts.close();
+		}
+	}
+	public static List<Chat> getChat() throws IOException {
+		List<Chat> chatList = new ArrayList<Chat>();
+		ReadCSV readChat = new ReadCSV("chat.csv");
+		try {
+			// auto-generated primary key for books table
+			Integer chatId = 1;
+			while (true) {
+				List<String> tuple = readChat.next();
+				if (tuple == null) {
+					break;
+				}
+				Iterator<String> i = tuple.iterator();
+				Chat c = new Chat();
+				c.setMsg(i.next());
+				c.setMsgId(chatId++);
+				chatList.add(c);
+			}
+			return chatList;
+		} finally {
+			readChat.close();
 		}
 	}
 }
