@@ -20,10 +20,13 @@ public class UserController {
 	//private IDatabase db;
 	
 	public UserController(){
+		DatabaseProvider.setInstance(new DerbyDatabase());
 		
 	}
 	public UserController(User u){
 		user=u;
+		DatabaseProvider.setInstance(new DerbyDatabase());
+		
 	}
 	
 	public boolean login(String username, String password){
