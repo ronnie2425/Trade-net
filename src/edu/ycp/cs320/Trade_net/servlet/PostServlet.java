@@ -12,9 +12,7 @@ import edu.ycp.cs320.Trade_net.controller.PostController;
 import edu.ycp.cs320.Trade_net.model.Posts;
 import edu.ycp.cs320.Trade_net.model.User;
 
-public class ListingsServlet extends HttpServlet{
-	
-private static final long serialVersionUID = 1L;
+public class PostServlet extends HttpServlet{
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -25,43 +23,26 @@ private static final long serialVersionUID = 1L;
 		}
 		//if the user is logged in send to listings page
 		else{
-			req.getRequestDispatcher("/_view/listings.jsp").forward(req, resp);
+			req.getRequestDispatcher("/_view/post.jsp").forward(req, resp);
 
 		}
 	}
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		//pull the information from the page
 		String platform = req.getParameter("platform");
 		String game = req.getParameter("game");
 		String type = req.getParameter("type");
-		/*
-		 * Send a query recieving posts that satisfy the above conditions
-		 * Create 10 posts with the queried information
-		 * Send these posts to the jsp
-		 * Store position in the list of queries so that a next button can be implemented that prints the next 10 posts
-		 */
-		System.out.println(platform);
-		System.out.println(game);
-		System.out.println(type);
+		String message = req.getParameter("message");
+		User user = (User) req.getSession().getAttribute("user");
+		int userId = user.getUserId();
 		
-		Posts post = new Posts();
-		post.setPlatform(platform);
-		post.setGame(game);
-		post.setBuy(type);
-		post.setTime(1);
-		post.setUserId(1);
-		post.setMessage("message");
+		Posts post = new Posts(platform, game, 0, type, message, user, 0, userId);
 		PostController controller = new PostController(post);
 		
-		List<Posts> list =controller.getPosts();
+		controller.insertPost();		
 		
-		req.setAttribute("list", list);
-		
-		
-		req.getRequestDispatcher("/_view/listings.jsp").forward(req, resp);
-
-		
-		
+		req.getRequestDispatcher("/_view/listings.jsp").forward(req, resp);		
 	}
 
 }

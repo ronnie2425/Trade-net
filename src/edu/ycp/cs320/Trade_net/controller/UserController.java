@@ -20,10 +20,13 @@ public class UserController {
 	//private IDatabase db;
 	
 	public UserController(){
+		DatabaseProvider.setInstance(new DerbyDatabase());
 		
 	}
 	public UserController(User u){
 		user=u;
+		DatabaseProvider.setInstance(new DerbyDatabase());
+		
 	}
 	
 	public boolean login(String username, String password){
@@ -41,6 +44,7 @@ public class UserController {
 			//set the model with the username and password
 			this.user.setUsername(user.getUsername());
 			this.user.setPassword(user.getPassword());
+			this.user.setUserId(user.getUserId());
 			//return true to allow the user to login
 			return true;
 		}

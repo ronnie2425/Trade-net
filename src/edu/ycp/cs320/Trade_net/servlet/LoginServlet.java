@@ -42,10 +42,7 @@ public class LoginServlet extends HttpServlet{
 			if (login){
 				System.out.println("the database returned the password:" + user.getPassword());
 				System.out.println("the database returned the username:" + user.getUsername());
-				
-				//user.setUsername(username);
-				//user.setPassword(password);
-				
+			
 				req.getSession().setAttribute("user", user);	
 				req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
 			}

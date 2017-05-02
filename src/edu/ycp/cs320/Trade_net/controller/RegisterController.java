@@ -24,6 +24,9 @@ public class RegisterController {
 		if (!register.getPassword().equals(register.getPassword2())){
 			return false;
 		}
+		if (register.getPassword().length() < 4 || register.getUsername().length() < 4){
+			return false;
+		}
 
 		IDatabase db = DatabaseProvider.getInstance();
 		List<User> userList = db.findUser(register.getUsername());
