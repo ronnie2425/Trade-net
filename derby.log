@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Sun Apr 30 23:21:04 EDT 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-015b-c206-9b54-00000d714ee8 
-on database directory C:\Users\Jacob\git\Trade-net\test.db with class loader sun.misc.Launcher$AppClassLoader@c387f44 
-Loaded from file:/C:/Users/Jacob/git/Trade-net/lib/derby.jar
+Fri May 05 16:13:07 EDT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-015b-da3e-9938-00000e390d30 
+on database directory C:\Users\Derek\git\Trade-net\test.db with class loader sun.misc.Launcher$AppClassLoader@4e0e2f2a 
+Loaded from file:/C:/Users/Derek/git/Trade-net/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_51-b16
-user.dir=C:\Users\Jacob\git\Trade-net
+java.runtime.version=1.8.0_60-b27
+user.dir=C:\Users\Derek\git\Trade-net
 os.name=Windows 8.1
 os.arch=amd64
 os.version=6.3

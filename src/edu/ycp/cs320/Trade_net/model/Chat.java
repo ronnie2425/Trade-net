@@ -5,13 +5,13 @@ public class Chat
 {
 	private String message;
 	private int msg_id;
-	private Posts post;
-	private int postid;
+	private User user;
+	private int userid;
 
 	public Chat(String m)
 	{
 		message = m;
-		postid = post.getPostId();
+		userid = 0;
 	}
 	public Chat()
 	{
@@ -33,20 +33,20 @@ public class Chat
 	{
 		return msg_id;
 	}
-	public void setPost(Posts pst)
+	public void setUser(User usr)
 	{
-		post = pst;
+		 user = usr;
 	}
-	public Posts getPost()
+	public User getUser()
 	{
-		return post;
+		return user;
 	}
-	public void setPostId(int pid)
+	public void setUserId(int uid)
 	{
-		postid = pid;
+		userid = uid;
 	}
-	public int getPostId()
+	public int getUserId()
 	{
-		return postid;
+		return userid;
 	}
 } 
