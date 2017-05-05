@@ -18,13 +18,14 @@
 				<li><a href="${pageContext.servletContext.contextPath}/listings">Trade</a></li>
 				<li><a href="${pageContext.servletContext.contextPath}/chat">Chat</a></li>
 				<li><a href="${pageContext.servletContext.contextPath}/logout">Logout</a></li>
+				<li><a href="${pageContext.servletContext.contextPath}/userInfo">User Info</a></li>
+				
 
 			</ul>
 		</div>
 		<div style="text-align:center;">
 			<form action="${pageContext.servletContext.contextPath}/post" method="get">
 			<br>Click here to create a new post</br>
-			<input type ="text" name ="text" />
 			<input name="post" type="submit" value="Create"/>
 			</form>
 		</div>
@@ -67,7 +68,14 @@
 			        	Message is: ${post.message}
 			        	userid is: ${post.userId}
 			        	postid is: ${post.postId}
-			        	<br></br>		            
+			        	<form action="${pageContext.servletContext.contextPath}/listings" method="get">
+			        		<br>Click here to view info about this post</br>
+							<input name="game" type="text" value="${post.game}" hidden />
+							<input name="type" type="text" value="${post.buy}" hidden />
+							<input name="platform" type="text" value="${post.platform}" hidden />
+							<input name="viewInfo" type="submit" value="View"/>
+						</form>		
+						<br />           
 			</c:forEach>
 		</div>
 		

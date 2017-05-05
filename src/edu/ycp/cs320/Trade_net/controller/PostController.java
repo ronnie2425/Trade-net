@@ -12,6 +12,8 @@ public class PostController {
 	private Posts post;
 	private IDatabase db;
 	
+	public PostController(){
+	}
 	
 	public PostController(Posts post){
 		this.post=post;
@@ -45,5 +47,10 @@ public class PostController {
 	public void deletePost(){
 		IDatabase db = DatabaseProvider.getInstance();
 		db.deletePost(post);
+	}
+	public List<Posts> getPostsByUserID(int user_id){
+		db = DatabaseProvider.getInstance();
+		List<Posts> postlist = db.findPostsByUserID(user_id);
+		return postlist;
 	}
 }

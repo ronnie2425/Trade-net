@@ -28,6 +28,9 @@ public class Posts {
 	public Posts(){
 		
 	}
+	public Posts(int postID){
+		this.post_id = postID;
+	}
 	public void setPlatform(String u){
 		platform=u;
 	}
