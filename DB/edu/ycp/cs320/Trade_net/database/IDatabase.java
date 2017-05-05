@@ -19,6 +19,6 @@ public interface IDatabase {
 	public List<User> insertUser(String username,String password, String email);
 	public List<Posts> insertPost( int userid, String platform, String game, String trade , int time,  String message);
 	public List<Posts> deletePost(Posts post);
-	public List<Chat> insertChat(final String message,final int postid,final int userid);
+	public List<Chat> insertChat(final String message,final int userid);
 	public List<Chat> findChat(final int chat_id);
 }
