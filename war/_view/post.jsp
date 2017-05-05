@@ -7,7 +7,7 @@
 		<link href="listingstyle.css" rel="stylesheet" type="text/css" ></link>
 	</head>
 	
-	<body>
+<body>
 	<div id="background">
 		<div class="navbar">
 			<ul>
@@ -21,9 +21,9 @@
 
 			</ul>
 		</div>
-		<div id="wrapper">	
+		<div id = "wrapper">
 			Please select a platform, game, and trade method:
-			<form action="${pageContext.servletContext.contextPath}/post" method="post">
+			<form action="${pageContext.servletContext.contextPath}/post" method="post">	
 				<select name="platform">
 					 <option value="null">Platform</option>
 					 <option value="PC">PC</option>
@@ -41,6 +41,7 @@
 				  <option value="C Strike:Global O">C Strike:Global O</option>
 				  <option value="DotA 2">DotA 2</option>
 				</select>
+				
 				<select name="type">
 				  <option value="null">Buy/Sell</option>
 				  <option value="buy">Buy</option>
@@ -52,7 +53,13 @@
 				<input name ="message" type="text"/>
 				
 				<input name ="submit" type ="submit" value="Create Post"/>				
-				
-		</form>
-	</div>
+			</form>
+		</div>
+		<br />
+		<br />
+		<br />
+		<br />
+		
+	</body>
+</html>
 	
