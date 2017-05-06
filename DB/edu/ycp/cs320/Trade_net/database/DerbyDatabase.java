@@ -109,13 +109,11 @@ public class DerbyDatabase implements IDatabase {
 		n.setUserId(resultSet.getInt(index++));
 		n.setNotification(resultSet.getString(index++));
 	}
-	/*private void loadChat(Chat c, ResultSet res, int index) throws SQLException
+	private void loadChat(Chat c, ResultSet resultSet, int index) throws SQLException
 	{
-		c.setMsgId(res.getInt(index++));
-		c.setPostId(res.getInt(index++));
-		c.setMsg(res.getString(index++));
-	}*/
-	
+		c.setMsg(resultSet.getString(index++));
+		c.setUserId(resultSet.getInt(index++));
+	}
 	public void createTables() {
 		executeTransaction(new Transaction<Boolean>() {
 			//@Override
@@ -123,17 +121,19 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt1 = null;
 				PreparedStatement stmt2 = null;
 				PreparedStatement stmt3 = null;
-				//PreparedStatement stmt4 = null;
+				PreparedStatement stmt4 = null;
 				
 				try {
-					// Chat : message id | post id | message
-					/*stmt4 = conn.prepareStatement(
+					stmt4 = conn.prepareStatement(
 							"create table chat (" +
-							"   message_id integer primary key " +
-							"       generated always as identity (start with 1, increment by 1), " +
-							"   message varchar(500)" +
-							")");
-					stmt4.executeUpdate();*/
+							"	chat_id integer primary key " +
+							"		generated always as identity (start with 1, increment by 1), " +									
+							"   message varchar(500)," +
+							"   user_id int" +
+							")"
+						);	
+						//System.out.println("test");
+					stmt4.executeUpdate();
 					// Users : User_id | Username | Password | Email
 					stmt1 = conn.prepareStatement(
 						"create table users (" +
@@ -190,12 +190,10 @@ public class DerbyDatabase implements IDatabase {
 				List<User> userList;
 				List<Posts> postList;
 				List<Notification> notList;
-				//List<Chat> chatList;
 				try {
 					userList = InitialData.getUsers();
 					postList = InitialData.getPosts();
 					notList = InitialData.getNotifications();
-					//chatList = InitialData.getChat();
 					
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
@@ -204,7 +202,6 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement insertUser = null;
 				PreparedStatement insertPost   = null;
 				PreparedStatement insertNotification   = null;
-				//PreparedStatement insertChat = null;
 				
 				try {
 					// populate authors table (do authors first, since author_id is foreign key in books table)
@@ -241,21 +238,11 @@ public class DerbyDatabase implements IDatabase {
 						insertPost.addBatch();
 					}
 					insertPost.executeBatch();
-					
-					/*insertChat = conn.prepareStatement("insert into chat (post_id, message) values (?, ?)");
-					for (Chat chat: chatList)
-					{
-						insertChat.setInt(1, postList.get(0).getPostId());
-						insertChat.setString(2, chat.getMsg());
-						insertChat.addBatch();
-					}
-					insertChat.executeBatch();*/
 					return true;
 				} finally {
 					DBUtil.closeQuietly(insertPost);
 					DBUtil.closeQuietly(insertUser);
 					DBUtil.closeQuietly(insertNotification);
-					//DBUtil.closeQuietly(insertChat);
 				}
 			}
 		});
@@ -354,7 +341,7 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 	
-	public List<Chat> insertChat(final String message,final int postid,final int userid)
+	public List<Chat> insertChat(final String message,final int userid)
 	{
 	//	throw new UnsupportedOperation();
 		return executeTransaction(new Transaction<List<Chat>>()
@@ -366,12 +353,12 @@ public class DerbyDatabase implements IDatabase {
 				
 				try
 				{
-					// Chat : message | message id | post id | user id
+					// Chat : message id | message | user id
 					stmt = conn.prepareStatement(
-							"insert into Chat(message,post_id)"
+							"insert into Chat(message,user_id)"
 							+  "values(?,?)");
 					stmt.setString(1, message);
-					stmt.setInt(2, postid);
+					stmt.setInt(2, userid);
 					
 					stmt.executeUpdate();
 					return null;
@@ -647,7 +634,7 @@ public class DerbyDatabase implements IDatabase {
 						found = true;
 						
 						Chat chat = new Chat();
-						//loadChat(chat, res, 1);
+						loadChat(chat, res, 1);
 						
 						result.add(chat);
 						
