@@ -21,4 +21,5 @@ public interface IDatabase {
 	public List<Posts> deletePost(Posts post);
 	public List<Chat> insertChat(final String message,final int userid);
 	public List<Chat> findChat(final int chat_id);
+	public List<Posts> findPostsByUserID(int user_id);
 }

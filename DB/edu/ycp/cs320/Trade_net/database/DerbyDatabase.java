@@ -653,4 +653,50 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
+	public List<Posts> findPostsByUserID(final int user_id){
+		return executeTransaction(new Transaction<List<Posts>>() {
+			//@Override
+			public List<Posts> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					// retreive all attributes from both Books and Authors tables
+					stmt = conn.prepareStatement(
+							"select posts.* " +
+							"  from posts " +
+							" where posts.user_id = ?"
+					);
+					stmt.setInt(1, user_id);
+					List <Posts> result = new ArrayList<Posts>();
+					
+					resultSet = stmt.executeQuery();
+					
+					// for testing that a result was returned
+					Boolean found = false;
+					
+					while (resultSet.next()) {
+						found = true;
+						
+						// create new post object
+						// retrieve attributes from resultSet starting with index 1
+						Posts post = new Posts();
+						loadPost(post, resultSet, 1);
+						
+						result.add(post);
+					}
+					
+					// check if the title was found
+					if (!found) {
+						System.out.println("posts were not found");
+					}
+					
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
 }
