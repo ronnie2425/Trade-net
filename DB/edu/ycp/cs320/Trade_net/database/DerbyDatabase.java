@@ -113,6 +113,7 @@ public class DerbyDatabase implements IDatabase {
 	{
 		c.setMsg(resultSet.getString(index++));
 		c.setUserId(resultSet.getInt(index++));
+		c.setPostId(resultSet.getInt(index++));
 	}
 	public void createTables() {
 		executeTransaction(new Transaction<Boolean>() {
@@ -129,7 +130,7 @@ public class DerbyDatabase implements IDatabase {
 							"	chat_id integer primary key " +
 							"		generated always as identity (start with 1, increment by 1), " +									
 							"   message varchar(500)," +
-							"   user_id int" +
+							"   user_id int, post_id int" +
 							")"
 						);	
 						//System.out.println("test");
@@ -341,7 +342,7 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 	
-	public List<Chat> insertChat(final String message,final int userid)
+	public List<Chat> insertChat(final String message,final int userid, final int postid)
 	{
 	//	throw new UnsupportedOperation();
 		return executeTransaction(new Transaction<List<Chat>>()
@@ -356,9 +357,10 @@ public class DerbyDatabase implements IDatabase {
 					// Chat : message id | message | user id
 					stmt = conn.prepareStatement(
 							"insert into Chat(message,user_id)"
-							+  "values(?,?)");
+							+  "values(?,?,?)");
 					stmt.setString(1, message);
 					stmt.setInt(2, userid);
+					stmt.setInt(3,  postid);
 					
 					stmt.executeUpdate();
 					return null;

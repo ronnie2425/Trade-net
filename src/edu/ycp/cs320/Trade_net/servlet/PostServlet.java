@@ -40,6 +40,10 @@ public class PostServlet extends HttpServlet{
 		Posts post = new Posts(platform, game, 0, type, message, user, 0, userId);
 		PostController controller = new PostController(post);
 		
+		if (platform.equals("null") || game.equals("null") || type.equals("null")){
+			req.getRequestDispatcher("/_view/post.jsp").forward(req, resp);		
+
+		}
 		controller.insertPost();		
 		
 		req.getRequestDispatcher("/_view/listings.jsp").forward(req, resp);		
