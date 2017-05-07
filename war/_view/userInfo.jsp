@@ -29,17 +29,17 @@
 				</c>
 				<c:forEach items="${userlist}" var="post">
 			        	Game is: ${post.game}
-			        	Type is: ${post.buy}
-			        	Platform is: ${post.platform}
-			        	Message is: ${post.message}
-			        	userid is: ${post.userId}
-			        	postid is: ${post.postId}
-			        	<form action="${pageContext.servletContext.contextPath}/userInfo" method="post">
-							<br>Click here to view info about a new post</br>
+			        	<t />Type is: ${post.buy}
+			        	<t />Platform is: ${post.platform}
+			        	<t />Message is: ${post.message}
+			        	<form action="${pageContext.servletContext.contextPath}/chat" method="get">
+							<br>Click here to view info about the post</br>
 							<input name="game" type="text" value="${post.game}" hidden />
 							<input name="type" type="text" value="${post.buy}" hidden />
 							<input name="platform" type="text" value="${post.platform}" hidden />
-							<input name="post" type="submit" value="Create"/>
+							<input name="postid" type="text" value="${post.postId}" hidden />
+							
+							<input name="post" type="submit" value="View"/>
 						</form>
 						<form action="${pageContext.servletContext.contextPath}/userInfo" method="post">
 							<br>Click here to delete this post</br>
@@ -50,10 +50,6 @@
 				</c:forEach>
 			</div>
 		</div>
-		
-		<c>
-			game selected is: ${gameselected}
-		</c>
 	</body>
 	
 </html>

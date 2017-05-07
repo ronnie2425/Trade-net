@@ -24,8 +24,8 @@
 		</ul>
 	</div>	
 		<div id="chatwindow">
-			<c:forEach items="${messages}" var="message">
-			        	${message}
+			<c:forEach items="${chatlist}" var="message">
+			        	${message.username}: ${message.msg}
 			        	<br></br>		            
 			    </c:forEach>
 		</div>

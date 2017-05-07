@@ -7,6 +7,7 @@ public class Chat
 	private int msg_id;
 	private User user;
 	private int userid;
+	private int postid;
 
 	public Chat(String m)
 	{
@@ -48,5 +49,14 @@ public class Chat
 	public int getUserId()
 	{
 		return userid;
+	}
+	public void setPostId(int pid){
+		this.postid = pid;
+	}
+	public int getPostId(){
+		return this.postid;
+	}
+	public String getUsername(){
+		return this.user.getUsername();
 	}
 } 
