@@ -20,6 +20,6 @@ public interface IDatabase {
 	public List<Posts> insertPost( int userid, String platform, String game, String trade , int time,  String message);
 	public List<Posts> deletePost(Posts post);
 	public List<Chat> insertChat(final String message,final int userid, final int postid);
-	public List<Chat> findChat(final int chat_id);
+	public List<Chat> findChatbyPost(final int post_id);
 	public List<Posts> findPostsByUserID(int user_id);
 }

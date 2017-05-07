@@ -111,6 +111,7 @@ public class DerbyDatabase implements IDatabase {
 	}
 	private void loadChat(Chat c, ResultSet resultSet, int index) throws SQLException
 	{
+		c.setMsgId(resultSet.getInt(index++));
 		c.setMsg(resultSet.getString(index++));
 		c.setUserId(resultSet.getInt(index++));
 		c.setPostId(resultSet.getInt(index++));
@@ -130,7 +131,8 @@ public class DerbyDatabase implements IDatabase {
 							"	chat_id integer primary key " +
 							"		generated always as identity (start with 1, increment by 1), " +									
 							"   message varchar(500)," +
-							"   user_id int, post_id int" +
+							"   user_id int, "+
+							"	post_id int " +
 							")"
 						);	
 						//System.out.println("test");
@@ -356,8 +358,8 @@ public class DerbyDatabase implements IDatabase {
 				{
 					// Chat : message id | message | user id
 					stmt = conn.prepareStatement(
-							"insert into Chat(message,user_id)"
-							+  "values(?,?,?)");
+							"insert into Chat(message,user_id,post_id)"
+							+  " values(?,?,?)");
 					stmt.setString(1, message);
 					stmt.setInt(2, userid);
 					stmt.setInt(3,  postid);
@@ -607,50 +609,51 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
-	public List<Chat> findChat(final int chat_id)
+	public List<Chat> findChatbyPost(final int post_id)
 	{
-		return executeTransaction(new Transaction<List<Chat>>()
-		{
-			public List<Chat> execute(Connection conn) throws SQLException
-			{
+		return executeTransaction(new Transaction<List<Chat>>() {
+			//@Override
+			public List<Chat> execute(Connection conn) throws SQLException {
 				PreparedStatement stmt = null;
-				ResultSet res = null;
+				ResultSet resultSet = null;
 				
-				try
-				{
+				try {
+					// retreive all attributes from both Books and Authors tables
 					stmt = conn.prepareStatement(
-							"select chat.*" +
-							"   from chat " +
-							"   where chat.message_id = ? "
-							);
-					stmt.setInt(1, chat_id);
+							"select * " +
+							"  from chat " +
+							" where chat.post_id = ? " 
+					);
+					stmt.setInt(1, post_id);
 					
-					List<Chat> result = new ArrayList<Chat>();
+					List <Chat> result = new ArrayList<Chat>();
 					
-					res = stmt.executeQuery();
+					resultSet = stmt.executeQuery();
 					
-					boolean found = false;
-					
-					while(res.next())
-					{
+					// for testing that a result was returned
+					Boolean found = false;
+					while (resultSet.next()) {
 						found = true;
 						
+						// create new User object
+						// retrieve attributes from resultSet starting with index 1
 						Chat chat = new Chat();
-						loadChat(chat, res, 1);
-						
+						loadChat(chat, resultSet, 1);
+						//System.out.println("Statement works");
 						result.add(chat);
-						
+						//System.out.println(chat);
 					}
-					if(!found)
-					{
-						System.out.println("Chat could not be found");
+					
+					// check if the title was found
+					if (!found) {
+						System.out.println("<" + post_id+ "> was not found in the users table");
 					}
+					//System.out.println(result.isEmpty());
+					//System.out.println("test");
 					return result;
-				}
-				finally
-				{
+				} finally {
+					DBUtil.closeQuietly(resultSet);
 					DBUtil.closeQuietly(stmt);
-					DBUtil.closeQuietly(res);
 				}
 			}
 		});

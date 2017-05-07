@@ -19,6 +19,7 @@ public class DatabaseTest {
 	List<User> users = null;
 	List<Notification> notifications = null;
 	List<Posts> posts = null;
+	List<Chat> chat = null;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception
@@ -168,6 +169,28 @@ public class DatabaseTest {
 		{
 			db.insertNotification(userid, msg);
 			System.out.println("Notification successfully inserted");
+		}
+	}
+	@Test
+	public void TestInsertChat()
+	{
+		System.out.println("\n*** Testing Insertchat ***");
+		
+		int userid = 2;
+		int postid = 2;
+		String msg = "work!!";
+		
+		db.insertChat(msg, userid, postid);
+		chat = db.findChatbyPost(postid);
+		if (chat.isEmpty())
+		{
+			System.out.println("Failed to insert chat");
+			fail("chat messed up");
+		}
+		else
+		{
+			//db.insertNotification(userid, msg);
+			//System.out.println("Notification successfully inserted");
 		}
 	}
 
