@@ -29,6 +29,7 @@ public class ChatServlet extends HttpServlet{
 		System.out.println("post id found is" +postid);
 		Chat chat = new Chat();
 		chat.setPostId(postid);
+		System.out.println("user's id is: " +user.getUserId());
 		
 		ChatController controller = new ChatController(chat);
 		List<Chat> chatlist = controller.findChat();
@@ -46,26 +47,8 @@ public class ChatServlet extends HttpServlet{
 	}
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		/*
-		//get the input
-		String input = (req.getParameter("userinput"));
-		//get the previous messages
-		ArrayList<String> messages = new ArrayList<String>();
-		if (req.getSession().getAttribute("messages") != null){
-			messages = (ArrayList<String>) req.getSession().getAttribute("messages");
-
-		}		
-		//add the input to the set of messages
-		messages.add(input);
-		req.getSession().setAttribute("messages", messages);
-		
-		/*
-		 * TODO
-		 * Pull the user's name and send it along with the message as a list
-		 * Some type of scrolling implementation to prevent going off the chat box
-		 * send the list of messages to the database
-		 */
 		User user = (User) req.getSession().getAttribute("user");
+		
 		String input = req.getParameter("userinput");
 		Chat chat = new Chat();
 		chat.setMsg(input);
@@ -73,10 +56,17 @@ public class ChatServlet extends HttpServlet{
 		chat.setUserId(user.getUserId());
 		chat.setPostId((Integer)req.getSession().getAttribute("postid"));
 		
-		
+		//insert into the chat
 		ChatController controller = new ChatController(chat);
 		if (!input.equals("")){
 			controller.insertChat();
+		}
+		
+		//retrieve the updated chat
+		List<Chat> chatlist = controller.findChat();
+		if (!(chatlist == null) && !chatlist.isEmpty()){
+			req.setAttribute("chatlist", chatlist);
+
 		}
 		
 		req.getRequestDispatcher("/_view/chat.jsp").forward(req, resp);

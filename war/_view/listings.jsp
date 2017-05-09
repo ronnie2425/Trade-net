@@ -16,7 +16,6 @@
 				<li><a href="${pageContext.servletContext.contextPath}/login">Log in</a></li>
 				<li><a href="${pageContext.servletContext.contextPath}/register">Register</a></li>
 				<li><a href="${pageContext.servletContext.contextPath}/listings">Trade</a></li>
-				<li><a href="${pageContext.servletContext.contextPath}/chat">Chat</a></li>
 				<li><a href="${pageContext.servletContext.contextPath}/logout">Logout</a></li>
 				<li><a href="${pageContext.servletContext.contextPath}/userInfo">User Info</a></li>
 				
@@ -66,8 +65,6 @@
 			        	Type is: ${post.buy}
 			        	Platform is: ${post.platform}
 			        	Message is: ${post.message}
-			        	userid is: ${post.userId}
-			        	postid is: ${post.postId}
 			        	<form action="${pageContext.servletContext.contextPath}/chat" method="get">
 			        		<br>Click here to view info about this post</br>
 							<input name="game" type="text" value="${post.game}" hidden />
