@@ -9,6 +9,7 @@
 	text-align: left;
 	margin: 0 auto;
 	margin-bottom: 30px;
+	overflow: scroll;
 	padding: 20px;
 	background: white;
 	height:350px;

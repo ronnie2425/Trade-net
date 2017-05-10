@@ -15,7 +15,6 @@
 			<li><a href="${pageContext.servletContext.contextPath}/login">Log in</a></li>
 			<li><a href="${pageContext.servletContext.contextPath}/register">Register</a></li>
 			<li><a href="${pageContext.servletContext.contextPath}/listings">Trade</a></li>
-			<li><a href="${pageContext.servletContext.contextPath}/chat">Chat</a></li>
 			<li><a href="${pageContext.servletContext.contextPath}/logout">Logout</a></li>
 			<li><a href="${pageContext.servletContext.contextPath}/userInfo">User Info</a></li>
 

@@ -17,18 +17,18 @@ public class ChatController {
 	{
 		chat = c;
 		DatabaseProvider.setInstance(new DerbyDatabase());
-		IDatabase db = DatabaseProvider.getInstance();
+		db = DatabaseProvider.getInstance();
 
 
 		
 	}
 	public void insertChat(){
-		//db.insertChat(chat.getMsg(), chat.getUserId(), chat.getPostId());
+		db.insertChat(chat.getMsg(), chat.getUserId(), chat.getPostId());
 	}
 	
-	public List<Chat> findChat() throws NullPointerException{
-		//return db.findChat(chat.getPostId());
-		return null;
+	public List<Chat> findChat(){
+		return db.findChatbyPost(chat.getPostId());
+		//return null;
 	}
 	
 	public String findUserName(){
