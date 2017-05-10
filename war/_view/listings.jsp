@@ -18,8 +18,6 @@
 				<li><a href="${pageContext.servletContext.contextPath}/listings">Trade</a></li>
 				<li><a href="${pageContext.servletContext.contextPath}/logout">Logout</a></li>
 				<li><a href="${pageContext.servletContext.contextPath}/userInfo">User Info</a></li>
-				
-
 			</ul>
 		</div>
 		<div style="text-align:center;">
@@ -27,9 +25,7 @@
 			<br>Click here to create a new post</br>
 			<input name="post" type="submit" value="Create"/>
 			</form>
-		</div>
-		
-		<div id="wrapper">	
+			
 			Please select a platform, game, and trade method:
 			<form action="${pageContext.servletContext.contextPath}/listings" method="post">
 				<select name="platform">
@@ -44,10 +40,10 @@
 				<select name="game">
 				  <option value="null">Game</option>
 				  <option value="CS:GO">CS:GO</option>
-				  <option value="3">Counter Strike:GO</option>
-				  <option value="4">CS:Global Offensive</option>
-				  <option value="5">C Strike:Global O</option>
-				  <option value="6">DotA 2</option>
+				  <option value="Counter Strike:GO">Counter Strike:GO</option>
+				  <option value="CS:Global Offensive">CS:Global Offensive</option>
+				  <option value="C Strike:Global O">C Strike:Global O</option>
+				  <option value="DotA">DotA 2</option>
 				</select>
 				<select name="type">
 				  <option value="null">Buy/Sell</option>
@@ -56,10 +52,10 @@
 				  <option value="trade">Trade</option>
 				</select>
 				<input name ="submit" type ="submit" value="Search"/>
-			</form>
-		
-		<br />
-		<div id="listings">
+			</form>	
+			
+			<br />
+			<br />
 			<c:forEach items="${list}" var="post">
 			        	Game is: ${post.game}
 			        	Type is: ${post.buy}
@@ -75,7 +71,6 @@
 						</form>		
 						<br />           
 			</c:forEach>
-		</div>
 		</div>
 		</div>
 		
